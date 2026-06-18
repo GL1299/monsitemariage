@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mon Site Mariage — Sites de mariage sur mesure</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Montserrat:wght@300;400&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="css/style.css"/>
+</head>
+<body>
+
+  <!-- HERO -->
+  <header>
+    <nav>
+      <span class="nav-logo">Mon Site Mariage</span>
+      <a href="#contact" class="btn-nav">Demander un devis</a>
+    </nav>
+    <div class="hero-content">
+      <p class="ornament">Sites de mariage sur mesure</p>
+      <h1>Votre plus beau jour<br/><em>mérite une belle page</em></h1>
+      <div class="divider"></div>
+      <p class="hero-sub">Invitations en ligne, programme, RSVP et liste de mariage —<br/>tout réuni dans un site élégant créé pour vous.</p>
+      <a href="#templates" class="btn-gold">Voir les templates</a>
+    </div>
+    <p class="scroll-hint">↓ Découvrir</p>
+  </header>
+
+  <!-- COMMENT ÇA MARCHE -->
+  <section id="how">
+    <p class="section-label">Le processus</p>
+    <h2>Simple &amp; rapide</h2>
+    <div class="steps-grid">
+      <div class="how-step">
+        <span class="step-number">01</span>
+        <h3>Choisissez votre style</h3>
+        <p>Parcourez nos templates et sélectionnez celui qui vous ressemble.</p>
+      </div>
+      <div class="how-step">
+        <span class="step-number">02</span>
+        <h3>Envoyez vos infos</h3>
+        <p>Date, lieu, programme, photos, liste de cadeaux — on s'occupe du reste.</p>
+      </div>
+      <div class="how-step">
+        <span class="step-number">03</span>
+        <h3>Partagez le lien</h3>
+        <p>Votre site est en ligne en 48h. Partagez-le à vos invités et profitez.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TEMPLATES -->
+  <section id="templates" class="templates-section">
+    <p class="section-label">Nos créations</p>
+    <h2>Templates disponibles</h2>
+    <div class="templates-grid">
+      <div class="template-card">
+        <div class="template-preview template-elegant">
+          <span class="template-name-overlay">Élégant</span>
+        </div>
+        <div class="template-info">
+          <h3>Élégant</h3>
+          <p>Crème &amp; or, typographie serif — intemporel et raffiné.</p>
+        </div>
+      </div>
+      <!-- Prochains templates à venir -->
+      <div class="template-card coming-soon">
+        <div class="template-preview template-placeholder">
+          <span>Bientôt</span>
+        </div>
+        <div class="template-info">
+          <h3>Bohème</h3>
+          <p>Tons terreux, ambiance naturelle et poétique.</p>
+        </div>
+      </div>
+      <div class="template-card coming-soon">
+        <div class="template-preview template-placeholder">
+          <span>Bientôt</span>
+        </div>
+        <div class="template-info">
+          <h3>Moderne</h3>
+          <p>Noir &amp; blanc, épuré, design contemporain.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CE QUI EST INCLUS -->
+  <section id="includes">
+    <p class="section-label">Ce qui est inclus</p>
+    <h2>Tout ce dont vous avez besoin</h2>
+    <ul class="includes-list">
+      <li><span class="check">✓</span> Programme de la journée</li>
+      <li><span class="check">✓</span> Formulaire RSVP en ligne</li>
+      <li><span class="check">✓</span> Lien vers votre liste de mariage ou cagnotte</li>
+      <li><span class="check">✓</span> Adapté mobile &amp; tablette</li>
+      <li><span class="check">✓</span> Hébergement inclus 1 an</li>
+      <li><span class="check">✓</span> Nom de domaine personnalisé en option</li>
+    </ul>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="contact-section">
+    <p class="section-label">Démarrer</p>
+    <h2>Parlons de votre mariage</h2>
+    <p class="contact-sub">Remplissez le formulaire ci-dessous et je vous réponds sous 24h.</p>
+
+    <form id="contactForm" name="contact-monsitemariage" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" novalidate>
+      <input type="hidden" name="form-name" value="contact-monsitemariage" />
+      <p style="display:none"><label>Ne pas remplir : <input name="bot-field" /></label></p>
+
+      <div class="form-group">
+        <label>Vos prénoms</label>
+        <input type="text" name="prenoms" placeholder="Ex : Sophie &amp; Thomas" required />
+      </div>
+      <div class="form-group">
+        <label>Email</label>
+        <input type="text" name="email" placeholder="votre@email.com" required />
+      </div>
+      <div class="form-group">
+        <label>Date du mariage</label>
+        <input type="text" name="date" placeholder="Ex : 12 septembre 2026" />
+      </div>
+      <div class="form-group">
+        <label>Template souhaité</label>
+        <input type="text" name="template" placeholder="Ex : Élégant" />
+      </div>
+      <div class="form-group">
+        <label>Message <span class="optional">(optionnel)</span></label>
+        <textarea name="message" placeholder="Parlez-nous un peu de votre mariage…"></textarea>
+      </div>
+      <button type="submit" class="btn-submit">Envoyer ma demande</button>
+    </form>
+
+    <div class="success-msg" id="successMsg">
+      <span>Merci !</span><br/>
+      <small>Je vous réponds dans les 24h.</small>
+    </div>
+  </section>
+
+  <footer>
+    <span>Mon Site Mariage</span> — Créé avec soin pour les amoureux
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
