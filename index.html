@@ -170,6 +170,11 @@
     .footer-links a:hover{color:var(--gold)}
     .footer-copy{font-size:12px;font-weight:300;color:#4A3020}
 
+    /* FORM SELECT */
+    .form-select{width:100%;border:none;border-bottom:1.5px solid var(--gold-light);padding:10px 0;background:transparent;font-size:16px;font-weight:300;color:var(--dark);outline:none;cursor:pointer;-webkit-appearance:none;appearance:none;transition:border-color .2s;background-image:url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23C4954A' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 4px center}
+    .form-select:focus{border-bottom-color:var(--gold)}
+    .form-select option{color:var(--dark);background:#FFF}
+
     @media(max-width:900px){
       nav{padding:0 24px}
       .nav-links a:not(.btn-gold){display:none}
@@ -177,13 +182,17 @@
       .steps-grid{grid-template-columns:1fr;gap:40px}
       .steps-connector{display:none}
       .step-item{padding:0}
-      .features-grid{grid-template-columns:1fr 1fr}
+      .features-grid{grid-template-columns:1fr}
       .templates-grid{grid-template-columns:1fr}
       .pricing-grid{flex-direction:column}
       .plan{border-right:none;border-bottom:1px solid var(--border)}
       .testi-grid{grid-template-columns:1fr}
       .contact-grid{grid-template-columns:1fr}
       footer{flex-direction:column;text-align:center}
+      .hero-stats{gap:16px;flex-wrap:nowrap}
+      .stat-num{font-size:30px}
+      .stat-sep{height:32px}
+      .stat-label{font-size:9px;letter-spacing:.06em}
     }
   </style>
 </head>
@@ -664,7 +673,13 @@
         </div>
         <div class="form-group">
           <label class="form-label">Template souhaité</label>
-          <input type="text" name="template" class="form-input" placeholder="Ex : Élégant ou Pétale"/>
+          <select name="template" class="form-select">
+            <option value="" disabled selected>Choisir un template</option>
+            <option value="Élégant">Élégant — Crème &amp; or</option>
+            <option value="Pétale">Pétale — Rose poudré</option>
+            <option value="Bohème">Bohème — (bientôt dispo)</option>
+            <option value="Moderne">Moderne — (bientôt dispo)</option>
+          </select>
         </div>
       </div>
       <div class="form-group" style="margin-bottom:32px">
