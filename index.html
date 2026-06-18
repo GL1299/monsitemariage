@@ -4,143 +4,775 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Mon Site Mariage — Sites de mariage sur mesure</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Montserrat:wght@300;400&display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="css/style.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --cream:#FAF8F3;--dark:#2C1F14;--gold:#C4954A;--gold-light:#E0C68A;
+      --brown:#6B4F2E;--brown-light:#8B6A4A;--border:#E8D5B0;--white:#FFFFFF;
+    }
+    html{scroll-behavior:smooth}
+    body{font-family:'DM Sans',sans-serif;font-weight:300;background:var(--cream);color:var(--dark);line-height:1.7;-webkit-font-smoothing:antialiased}
+    ::placeholder{color:#A08060;opacity:1}
+    input,textarea,button,select{font-family:inherit}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+    @keyframes bob{from{opacity:.3;transform:translateX(-50%) translateY(4px)}to{opacity:1;transform:translateX(-50%) translateY(0)}}
+
+    /* NAV */
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:0 56px;height:72px;transition:background .35s,box-shadow .35s}
+    nav.scrolled{background:rgba(250,248,243,.96);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:0 1px 20px rgba(44,31,20,.07)}
+    .nav-logo{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:500;color:var(--dark);text-decoration:none;letter-spacing:.02em}
+    .nav-links{display:flex;gap:36px;align-items:center}
+    .nav-links a{font-size:14px;font-weight:400;color:var(--brown);text-decoration:none;letter-spacing:.02em;transition:color .2s}
+    .nav-links a:hover{color:var(--gold)}
+    .btn-gold{display:inline-block;padding:10px 24px;background:var(--gold);color:#FFF;font-size:13px;font-weight:500;letter-spacing:.07em;text-transform:uppercase;text-decoration:none;transition:background .2s}
+    .btn-gold:hover{background:#A87B38}
+    .btn-outline{display:inline-block;padding:10px 24px;border:1px solid var(--gold);color:var(--gold);font-size:13px;font-weight:500;letter-spacing:.07em;text-transform:uppercase;text-decoration:none;transition:background .2s,color .2s}
+    .btn-outline:hover{background:var(--gold);color:#FFF}
+
+    /* HERO */
+    .hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:120px 48px 80px;background:var(--cream);text-align:center;position:relative;overflow:hidden;animation:fadeUp .9s ease .1s both}
+    .hero-grid{position:absolute;inset:0;pointer-events:none;opacity:.035}
+    .label{display:flex;align-items:center;gap:20px;margin-bottom:36px;justify-content:center}
+    .label-line{height:1px;width:56px}
+    .label-text{font-size:11px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--gold)}
+    h1{font-family:'Cormorant Garamond',serif;font-size:clamp(52px,7.5vw,88px);font-weight:400;line-height:1.08;color:var(--dark);margin-bottom:28px}
+    h1 em{font-weight:300;color:var(--brown);font-style:italic}
+    .diamond-sep{display:flex;align-items:center;gap:12px;justify-content:center;margin-bottom:30px}
+    .diamond{width:5px;height:5px;border:1px solid var(--gold);transform:rotate(45deg);opacity:.7}
+    .hero-sub{font-size:18px;font-weight:300;color:var(--brown);line-height:1.8;margin-bottom:48px;max-width:560px;margin-left:auto;margin-right:auto}
+    .hero-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-bottom:80px}
+    .hero-stats{display:flex;gap:64px;justify-content:center;flex-wrap:wrap;animation:fadeUp .9s ease .35s both}
+    .stat-item{text-align:center}
+    .stat-num{font-family:'Cormorant Garamond',serif;font-size:44px;font-weight:400;color:var(--gold);line-height:1}
+    .stat-label{font-size:11px;font-weight:400;letter-spacing:.1em;text-transform:uppercase;color:var(--brown-light);margin-top:6px}
+    .stat-sep{width:1px;background:var(--gold-light);height:48px;align-self:center;opacity:.6}
+    .scroll-hint{position:absolute;bottom:36px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;opacity:.35;animation:fadeUp 1s ease .6s both}
+    .scroll-hint span{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--dark)}
+
+    /* SECTIONS */
+    section{padding:112px 56px}
+    .section-inner{max-width:1120px;margin:0 auto}
+    .section-header{text-align:center;margin-bottom:72px}
+    .section-header.lg{margin-bottom:80px}
+    h2{font-family:'Cormorant Garamond',serif;font-size:clamp(36px,5vw,54px);font-weight:400;color:var(--dark)}
+    .section-sub{font-size:16px;font-weight:300;color:var(--brown-light);margin-top:16px;max-width:460px;margin-left:auto;margin-right:auto;line-height:1.75}
+    .bg-white{background:var(--white)}
+    .bg-dark{background:#2C1F14}
+    .bg-darker{background:#1A1008}
+
+    /* HOW */
+    .steps-grid{display:grid;grid-template-columns:repeat(3,1fr);position:relative}
+    .steps-connector{position:absolute;top:44px;left:calc(16.66% + 44px);right:calc(16.66% + 44px);height:1px;background:linear-gradient(90deg,var(--gold),var(--gold-light),var(--gold))}
+    .step-item{text-align:center;padding:0 44px}
+    .step-circle{width:88px;height:88px;border-radius:50%;border:1.5px solid var(--border);background:var(--white);margin:0 auto 36px;display:flex;align-items:center;justify-content:center;position:relative;z-index:1}
+    .step-circle.active{border-color:var(--gold);background:var(--cream);box-shadow:0 0 0 8px rgba(196,149,74,.07)}
+    .step-num{font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:300;color:var(--gold)}
+    .step-item h3{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:500;color:var(--dark);margin-bottom:14px}
+    .step-item p{font-size:15px;font-weight:300;color:var(--brown);line-height:1.75}
+
+    /* FEATURES */
+    .features-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--border)}
+    .feature-card{background:var(--cream);padding:36px 32px}
+    .feature-card.highlight{background:var(--dark)}
+    .feature-card.highlight h3{color:#FAF8F3}
+    .feature-card.highlight p{color:var(--gold)}
+    .feature-card.highlight .badge{position:absolute;top:16px;right:16px;background:var(--gold);color:#FFF;font-size:9px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;padding:3px 10px}
+    .feature-card-inner{position:relative}
+    .feature-card .icon{margin-bottom:20px}
+    .feature-card h3{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:500;color:var(--dark);margin-bottom:10px}
+    .feature-card p{font-size:14px;font-weight:300;color:var(--brown-light);line-height:1.7}
+
+    /* TEMPLATES */
+    .templates-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:32px}
+    .template-card .preview{height:360px;overflow:hidden;position:relative;border:1px solid var(--border)}
+    .template-card .preview-bar{height:30px;display:flex;align-items:center;padding:0 12px;gap:6px;border-bottom:1px solid var(--border)}
+    .dot{width:8px;height:8px;border-radius:50%}
+    .preview-url{flex:1;height:14px;border-radius:2px;margin-left:8px}
+    .template-card .preview-content{padding:28px 24px;display:flex;flex-direction:column;align-items:center;gap:10px}
+    .template-card .preview-blur{position:absolute;inset:30px 0 0;backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);display:flex;align-items:center;justify-content:center;z-index:2}
+    .template-info{padding:24px 0 0}
+    .template-info h3{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:500;color:var(--dark);margin-bottom:8px}
+    .template-info p{font-size:14px;font-weight:300;color:var(--brown-light);line-height:1.65;margin-bottom:16px}
+    .template-link{font-size:13px;font-weight:500;color:var(--gold);text-decoration:none;border-bottom:1px solid var(--gold-light);padding-bottom:2px;letter-spacing:.04em}
+    .template-soon{font-size:13px;font-weight:400;color:#B09070;letter-spacing:.04em}
+    .coming-overlay{text-align:center}
+    .coming-overlay .title{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:400;font-style:italic;margin-bottom:8px}
+    .coming-overlay .sub{font-size:10px;font-weight:400;letter-spacing:.14em;text-transform:uppercase;opacity:.8}
+
+    /* PRICING */
+    .pricing-grid{display:flex;border:1px solid var(--border)}
+    .plan{flex:1;padding:48px 40px;background:var(--white);border-right:1px solid var(--border);display:flex;flex-direction:column}
+    .plan.featured{background:var(--dark);border-right:1px solid #3D2B1A}
+    .plan-badge{background:var(--gold);padding:10px 40px;text-align:center;flex-shrink:0}
+    .plan-badge span{font-size:10px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:#FFF}
+    .plan-label{font-size:11px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--brown-light);margin-bottom:20px}
+    .plan.featured .plan-label{color:var(--gold)}
+    .plan-price{display:flex;align-items:baseline;gap:4px;margin-bottom:6px}
+    .plan-num{font-family:'Cormorant Garamond',serif;font-size:60px;font-weight:400;line-height:1}
+    .plan.featured .plan-num{color:#FAF8F3}
+    .plan-currency{font-size:22px;font-weight:300;color:var(--brown-light)}
+    .plan.featured .plan-currency{color:var(--gold)}
+    .plan-cycle{font-size:13px;font-weight:300;color:#A08060;margin-bottom:36px}
+    .plan.featured .plan-cycle{color:#6B4F2E}
+    .plan-features{display:flex;flex-direction:column;gap:14px;margin-bottom:40px;flex:1}
+    .plan-feat{display:flex;align-items:flex-start;gap:10px}
+    .plan-feat span{font-size:14px;font-weight:300;color:#4A3020;line-height:1.55}
+    .plan.featured .plan-feat span{color:#E8D5B0}
+    .plan-feat strong{color:var(--gold);font-weight:500}
+    .plan-cta-outline{display:block;text-align:center;padding:14px 24px;border:1px solid var(--gold);color:var(--gold);font-size:12px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;transition:background .2s,color .2s}
+    .plan-cta-outline:hover{background:var(--gold);color:#FFF}
+    .plan-cta-solid{display:block;text-align:center;padding:14px 24px;background:var(--gold);color:#FFF;font-size:12px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;transition:background .2s}
+    .plan-cta-solid:hover{background:#A87B38}
+    .pricing-note{text-align:center;font-size:13px;font-weight:300;color:var(--brown-light);margin-top:28px}
+
+    /* TESTIMONIALS */
+    .testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:#3D2B1A}
+    .testi-card{padding:48px 40px;background:var(--dark)}
+    .testi-quote{font-family:'Cormorant Garamond',serif;font-size:72px;color:var(--gold);line-height:.6;margin-bottom:28px;opacity:.5}
+    .testi-text{font-family:'Cormorant Garamond',serif;font-size:19px;font-weight:400;color:#FAF8F3;line-height:1.75;font-style:italic;margin-bottom:36px}
+    .testi-author{display:flex;align-items:center;gap:14px}
+    .testi-avatar{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,var(--gold),#E0B870);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+    .testi-avatar span{font-family:'Cormorant Garamond',serif;font-size:18px;color:#FAF8F3}
+    .testi-name{font-size:14px;font-weight:500;color:#FAF8F3}
+    .testi-info{font-size:12px;font-weight:300;color:#6B4F2E;margin-top:3px}
+
+    /* FAQ */
+    .faq-item{border-top:1px solid var(--border);padding:28px 0;cursor:pointer;user-select:none}
+    .faq-item:last-child{border-bottom:1px solid var(--border)}
+    .faq-header{display:flex;justify-content:space-between;align-items:center;gap:24px}
+    .faq-q{font-family:'Cormorant Garamond',serif;font-size:21px;font-weight:500;color:var(--dark);line-height:1.4}
+    .faq-icon{font-size:26px;font-weight:300;color:var(--gold);line-height:1;flex-shrink:0;width:28px;text-align:center;transition:transform .2s}
+    .faq-body{margin-top:16px;padding-right:52px;display:none}
+    .faq-body p{font-size:15px;font-weight:300;color:var(--brown);line-height:1.85}
+
+    /* CONTACT */
+    .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px}
+    .form-group{display:flex;flex-direction:column;gap:10px}
+    .form-label{font-size:10px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}
+    .form-input{width:100%;border:none;border-bottom:1.5px solid var(--gold-light);padding:10px 0;background:transparent;font-size:16px;font-weight:300;color:var(--dark);outline:none;transition:border-color .2s}
+    .form-input:focus{border-bottom-color:var(--gold)}
+    .form-textarea{width:100%;border:none;border-bottom:1.5px solid var(--gold-light);padding:10px 0;background:transparent;font-size:16px;font-weight:300;color:var(--dark);outline:none;resize:none;line-height:1.65;transition:border-color .2s}
+    .form-textarea:focus{border-bottom-color:var(--gold)}
+    .form-submit{width:100%;padding:18px 40px;background:var(--gold);color:#FFF;font-size:13px;font-weight:500;letter-spacing:.09em;text-transform:uppercase;border:none;cursor:pointer;transition:background .2s}
+    .form-submit:hover{background:#A87B38}
+    .form-success{text-align:center;padding:80px 40px;background:var(--white);border:1px solid var(--border);display:none}
+    .form-success .check{font-size:64px;color:var(--gold);line-height:1;margin-bottom:16px}
+    .form-success h3{font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:400;color:var(--dark);margin-bottom:12px}
+    .form-success p{font-size:15px;font-weight:300;color:var(--brown-light);line-height:1.75}
+
+    /* FOOTER */
+    footer{padding:48px 56px;background:#1A1008;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:24px}
+    .footer-brand span{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:500;color:#FAF8F3;letter-spacing:.02em}
+    .footer-brand p{font-size:12px;font-weight:300;color:#4A3020;margin-top:5px}
+    .footer-links{display:flex;gap:32px;align-items:center;flex-wrap:wrap}
+    .footer-links a{font-size:13px;font-weight:300;color:#4A3020;text-decoration:none;transition:color .2s}
+    .footer-links a:hover{color:var(--gold)}
+    .footer-copy{font-size:12px;font-weight:300;color:#4A3020}
+
+    @media(max-width:900px){
+      nav{padding:0 24px}
+      .nav-links a:not(.btn-gold){display:none}
+      section{padding:72px 24px}
+      .steps-grid{grid-template-columns:1fr;gap:40px}
+      .steps-connector{display:none}
+      .step-item{padding:0}
+      .features-grid{grid-template-columns:1fr 1fr}
+      .templates-grid{grid-template-columns:1fr}
+      .pricing-grid{flex-direction:column}
+      .plan{border-right:none;border-bottom:1px solid var(--border)}
+      .testi-grid{grid-template-columns:1fr}
+      .contact-grid{grid-template-columns:1fr}
+      footer{flex-direction:column;text-align:center}
+    }
+  </style>
 </head>
 <body>
 
-  <!-- HERO -->
-  <header>
-    <nav>
-      <span class="nav-logo">Mon Site Mariage</span>
-      <a href="#contact" class="btn-nav">Demander un devis</a>
-    </nav>
-    <div class="hero-content">
-      <p class="ornament">Sites de mariage sur mesure</p>
-      <h1>Votre plus beau jour<br/><em>mérite une belle page</em></h1>
-      <div class="divider"></div>
-      <p class="hero-sub">Invitations en ligne, programme, RSVP et liste de mariage —<br/>tout réuni dans un site élégant créé pour vous.</p>
-      <a href="#templates" class="btn-gold">Voir les templates</a>
-    </div>
-    <p class="scroll-hint">↓ Découvrir</p>
-  </header>
+<!-- NAV -->
+<nav id="nav">
+  <a href="#" class="nav-logo">Mon Site Mariage</a>
+  <div class="nav-links">
+    <a href="#how">Comment ça marche</a>
+    <a href="#features">Fonctionnalités</a>
+    <a href="#pricing">Tarifs</a>
+    <a href="#contact" class="btn-gold">Commencer</a>
+  </div>
+</nav>
 
-  <!-- COMMENT ÇA MARCHE -->
-  <section id="how">
-    <p class="section-label">Le processus</p>
-    <h2>Simple &amp; rapide</h2>
+<!-- HERO -->
+<section class="hero">
+  <svg class="hero-grid" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+    <defs><pattern id="pg" width="72" height="72" patternUnits="userSpaceOnUse">
+      <path d="M72 0L0 0 0 72" fill="none" stroke="#8B6040" stroke-width="0.6"/>
+      <path d="M72 72L72 0" fill="none" stroke="#8B6040" stroke-width="0.6"/>
+    </pattern></defs>
+    <rect width="100%" height="100%" fill="url(#pg)"/>
+  </svg>
+
+  <div style="position:relative;max-width:760px">
+    <div class="label">
+      <div class="label-line" style="background:linear-gradient(90deg,transparent,var(--gold))"></div>
+      <span class="label-text">Sites de mariage sur mesure</span>
+      <div class="label-line" style="background:linear-gradient(-90deg,transparent,var(--gold))"></div>
+    </div>
+
+    <h1>Votre plus beau jour<br><em>mérite une belle page</em></h1>
+
+    <div class="diamond-sep">
+      <div style="height:1px;width:24px;background:var(--gold);opacity:.5"></div>
+      <div class="diamond"></div>
+      <div style="height:1px;width:24px;background:var(--gold);opacity:.5"></div>
+    </div>
+
+    <p class="hero-sub">Invitation en ligne, programme détaillé, confirmation des invités et QR code pour vos faire-part — livré en 48h.</p>
+
+    <div class="hero-btns">
+      <a href="#contact" class="btn-gold" style="padding:16px 40px;font-size:13px">Créer mon site mariage</a>
+      <a href="#templates" class="btn-outline" style="padding:16px 40px;font-size:13px">Voir les templates</a>
+    </div>
+  </div>
+
+  <div class="hero-stats">
+    <div class="stat-item">
+      <div class="stat-num">48h</div>
+      <div class="stat-label">Délai de livraison</div>
+    </div>
+    <div class="stat-sep"></div>
+    <div class="stat-item">
+      <div class="stat-num">4</div>
+      <div class="stat-label">Templates disponibles</div>
+    </div>
+    <div class="stat-sep"></div>
+    <div class="stat-item">
+      <div class="stat-num">1 an</div>
+      <div class="stat-label">Hébergement inclus</div>
+    </div>
+  </div>
+
+  <div class="scroll-hint">
+    <span>Découvrir</span>
+    <svg width="12" height="20" viewBox="0 0 12 20" fill="none">
+      <path d="M6 2v16M1 14l5 5 5-5" stroke="#2C1F14" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </div>
+</section>
+
+<!-- COMMENT ÇA MARCHE -->
+<section class="bg-white" id="how">
+  <div class="section-inner">
+    <div class="section-header lg">
+      <div class="label"><div class="label-line" style="background:var(--gold)"></div><span class="label-text">Le processus</span><div class="label-line" style="background:var(--gold)"></div></div>
+      <h2>Simple &amp; clé en main</h2>
+      <p class="section-sub">Du choix du template à la mise en ligne, on s'occupe de tout.</p>
+    </div>
     <div class="steps-grid">
-      <div class="how-step">
-        <span class="step-number">01</span>
+      <div class="steps-connector"></div>
+      <div class="step-item">
+        <div class="step-circle"><span class="step-num">01</span></div>
         <h3>Choisissez votre style</h3>
-        <p>Parcourez nos templates et sélectionnez celui qui vous ressemble.</p>
+        <p>Parcourez nos templates et sélectionnez l'ambiance qui vous ressemble le mieux.</p>
       </div>
-      <div class="how-step">
-        <span class="step-number">02</span>
-        <h3>Envoyez vos infos</h3>
-        <p>Date, lieu, programme, photos, liste de cadeaux — on s'occupe du reste.</p>
+      <div class="step-item">
+        <div class="step-circle active"><span class="step-num">02</span></div>
+        <h3>Envoyez vos informations</h3>
+        <p>Date, lieu, programme, photos, liste de mariage — on s'occupe du reste.</p>
       </div>
-      <div class="how-step">
-        <span class="step-number">03</span>
-        <h3>Partagez le lien</h3>
-        <p>Votre site est en ligne en 48h. Partagez-le à vos invités et profitez.</p>
+      <div class="step-item">
+        <div class="step-circle"><span class="step-num">03</span></div>
+        <h3>Partagez &amp; profitez</h3>
+        <p>Votre site est en ligne en 48h, avec un QR code prêt pour vos faire-part.</p>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- TEMPLATES -->
-  <section id="templates" class="templates-section">
-    <p class="section-label">Nos créations</p>
-    <h2>Templates disponibles</h2>
+<!-- FONCTIONNALITÉS -->
+<section id="features">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="label"><div class="label-line" style="background:var(--gold)"></div><span class="label-text">Fonctionnalités</span><div class="label-line" style="background:var(--gold)"></div></div>
+      <h2>Tout pour votre grand jour</h2>
+      <p class="section-sub">Chaque site est livré avec tout ce dont vos invités ont besoin, accessible en un scan.</p>
+    </div>
+    <div class="features-grid">
+
+      <div class="feature-card">
+        <div class="icon">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><rect x="4" y="5" width="24" height="24" rx="2" stroke="#C4954A" stroke-width="1.5"/><path d="M4 12h24" stroke="#C4954A" stroke-width="1.5"/><path d="M10 3v4M22 3v4" stroke="#C4954A" stroke-width="1.5" stroke-linecap="round"/><rect x="8" y="17" width="4" height="4" rx=".5" fill="#C4954A"/><rect x="14" y="17" width="4" height="4" rx=".5" fill="#C4954A" opacity=".45"/><rect x="20" y="17" width="4" height="4" rx=".5" fill="#C4954A" opacity=".25"/></svg>
+        </div>
+        <h3>Programme de la journée</h3>
+        <p>Horaires, lieux, étapes clés — vos invités savent où et quand se retrouver.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="icon">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><rect x="2" y="8" width="22" height="16" rx="2" stroke="#C4954A" stroke-width="1.5"/><path d="M2 12l11 7 11-7" stroke="#C4954A" stroke-width="1.5" stroke-linecap="round"/><circle cx="25" cy="8" r="5" fill="#FAF8F3" stroke="#C4954A" stroke-width="1.5"/><path d="M22.5 8l2 2 3.5-3" stroke="#C4954A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <h3>Confirmation des invités</h3>
+        <p>Formulaire RSVP en ligne, suivi des présences et régimes alimentaires.</p>
+      </div>
+
+      <div class="feature-card highlight">
+        <div class="feature-card-inner">
+          <div class="badge">Nouveau</div>
+          <div class="icon">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><rect x="3" y="3" width="11" height="11" rx="1.5" stroke="#C4954A" stroke-width="1.5"/><rect x="6" y="6" width="5" height="5" fill="#C4954A"/><rect x="18" y="3" width="11" height="11" rx="1.5" stroke="#C4954A" stroke-width="1.5"/><rect x="21" y="6" width="5" height="5" fill="#C4954A"/><rect x="3" y="18" width="11" height="11" rx="1.5" stroke="#C4954A" stroke-width="1.5"/><rect x="6" y="21" width="5" height="5" fill="#C4954A"/><rect x="18" y="18" width="4" height="4" fill="#C4954A"/><rect x="24" y="18" width="4" height="4" fill="#C4954A"/><rect x="18" y="24" width="4" height="4" fill="#C4954A"/><rect x="24" y="24" width="4" height="4" fill="#C4954A"/></svg>
+          </div>
+          <h3>QR Code faire-part</h3>
+          <p>Un code unique à imprimer sur vos invitations pour un accès instantané au site.</p>
+        </div>
+      </div>
+
+      <div class="feature-card">
+        <div class="icon">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><rect x="3" y="5" width="26" height="20" rx="2" stroke="#C4954A" stroke-width="1.5"/><path d="M3 20l8-7 6 5 4-3.5 7 6.5" stroke="#C4954A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="10" cy="12" r="2.5" stroke="#C4954A" stroke-width="1.5"/></svg>
+        </div>
+        <h3>Galerie photos</h3>
+        <p>Partagez vos plus belles photos en avant-première avec tous vos proches.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="icon">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><path d="M16 27S3 19 3 11a6 6 0 0113-1 6 6 0 0113 1c0 8-13 16-13 16z" stroke="#C4954A" stroke-width="1.5" stroke-linejoin="round"/></svg>
+        </div>
+        <h3>Liste de mariage</h3>
+        <p>Lien vers votre liste de cadeaux ou cagnotte, intégré directement au site.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="icon">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><rect x="10" y="2" width="12" height="28" rx="3" stroke="#C4954A" stroke-width="1.5"/><path d="M14 27h4" stroke="#C4954A" stroke-width="1.5" stroke-linecap="round"/><path d="M10 6h12" stroke="#C4954A" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </div>
+        <h3>Adapté mobile &amp; tablette</h3>
+        <p>Design responsive pour une expérience parfaite sur tous les appareils.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="icon">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><path d="M8 23a8 8 0 1 1 14-5.5 5.5 5.5 0 1 1-2 11H8a5.5 5.5 0 0 1 0-11z" stroke="#C4954A" stroke-width="1.5" stroke-linejoin="round"/></svg>
+        </div>
+        <h3>Hébergement 1 an inclus</h3>
+        <p>Pas de configuration technique — votre site reste en ligne sans effort.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="icon">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><circle cx="16" cy="18" r="11" stroke="#C4954A" stroke-width="1.5"/><path d="M16 12v6l4 3" stroke="#C4954A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M13 4h6" stroke="#C4954A" stroke-width="1.5" stroke-linecap="round"/><path d="M16 4v3" stroke="#C4954A" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </div>
+        <h3>Compte à rebours</h3>
+        <p>Un décompte élégant jusqu'au jour J pour faire monter l'impatience.</p>
+      </div>
+
+      <div class="feature-card highlight">
+        <div class="feature-card-inner">
+          <div class="badge">Après le mariage</div>
+          <div class="icon">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><rect x="2" y="6" width="28" height="20" rx="2" stroke="#C4954A" stroke-width="1.5"/><path d="M2 18l7-6 5 5 5-4 8 7" stroke="#C4954A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9" cy="13" r="2.5" stroke="#C4954A" stroke-width="1.5"/><path d="M19 26v-3M23 26v-3M27 26v-3" stroke="#C4954A" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </div>
+          <h3>Album photos post-mariage</h3>
+          <p>Publiez vos photos après le mariage pour que vos invités les visualisent et les téléchargent directement depuis le site.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- TEMPLATES -->
+<section class="bg-white" id="templates">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="label"><div class="label-line" style="background:var(--gold)"></div><span class="label-text">Nos créations</span><div class="label-line" style="background:var(--gold)"></div></div>
+      <h2>Templates disponibles</h2>
+      <p class="section-sub">Choisissez l'ambiance qui correspond à votre mariage.</p>
+    </div>
+
     <div class="templates-grid">
+
+      <!-- Élégant -->
       <div class="template-card">
-        <div class="template-preview template-elegant">
-          <span class="template-name-overlay">Élégant</span>
+        <div class="preview" style="background:#FAF8F3">
+          <div class="preview-bar" style="background:#F0E8DC;border-color:#E8D5B0">
+            <div class="dot" style="background:#E8C8A8"></div><div class="dot" style="background:#E8D0A0"></div><div class="dot" style="background:#D4C090"></div>
+            <div class="preview-url" style="background:#E0D4C8"></div>
+          </div>
+          <div class="preview-content">
+            <div style="display:flex;align-items:center;gap:12px;width:100%;justify-content:center">
+              <div style="height:1px;width:24px;background:#C4954A;opacity:.5"></div>
+              <div style="height:6px;width:100px;background:#2C1F14;border-radius:1px;opacity:.1"></div>
+              <div style="height:1px;width:24px;background:#C4954A;opacity:.5"></div>
+            </div>
+            <div style="height:18px;width:160px;background:#2C1F14;border-radius:1px;opacity:.1"></div>
+            <div style="height:10px;width:120px;background:#2C1F14;border-radius:1px;opacity:.06"></div>
+            <div style="width:100%;height:4px"></div>
+            <div style="width:100%;height:100px;background:linear-gradient(135deg,#E8D5B0,#F0E4CB,#E0C898);display:flex;align-items:center;justify-content:center">
+              <span style="font-size:9px;color:#8B6A4A;letter-spacing:.12em">VOTRE PHOTO</span>
+            </div>
+            <div style="height:8px;width:140px;background:#C4954A;border-radius:1px;opacity:.25"></div>
+            <div style="height:7px;width:100px;background:#2C1F14;border-radius:1px;opacity:.06"></div>
+            <div style="width:88px;height:26px;background:#C4954A;border-radius:1px;margin-top:4px;display:flex;align-items:center;justify-content:center">
+              <div style="width:44px;height:5px;background:#FFF;border-radius:1px;opacity:.75"></div>
+            </div>
+          </div>
         </div>
         <div class="template-info">
           <h3>Élégant</h3>
           <p>Crème &amp; or, typographie serif — intemporel et raffiné.</p>
+          <a href="#contact" class="template-link">Choisir ce template →</a>
         </div>
       </div>
-      <!-- Prochains templates à venir -->
-      <div class="template-card coming-soon">
-        <div class="template-preview template-placeholder">
-          <span>Bientôt</span>
+
+      <!-- Pétale (NOUVEAU — girly/rose) -->
+      <div class="template-card">
+        <div class="preview" style="background:#FFF0F5">
+          <div class="preview-bar" style="background:#F5C8D8;border-color:#EFBACE">
+            <div class="dot" style="background:#E896B8"></div><div class="dot" style="background:#F0A8C0"></div><div class="dot" style="background:#D880A8"></div>
+            <div class="preview-url" style="background:#EEB8CC"></div>
+          </div>
+          <div class="preview-content">
+            <div style="display:flex;align-items:center;gap:12px;width:100%;justify-content:center">
+              <div style="height:1px;width:24px;background:#D880A8;opacity:.5"></div>
+              <div style="height:6px;width:100px;background:#6B2040;border-radius:1px;opacity:.1"></div>
+              <div style="height:1px;width:24px;background:#D880A8;opacity:.5"></div>
+            </div>
+            <div style="height:18px;width:160px;background:#6B2040;border-radius:1px;opacity:.1"></div>
+            <div style="height:10px;width:120px;background:#6B2040;border-radius:1px;opacity:.06"></div>
+            <div style="width:100%;height:4px"></div>
+            <div style="width:100%;height:100px;background:linear-gradient(135deg,#F5D0E0,#FDE8F0,#F0C0D8);display:flex;align-items:center;justify-content:center">
+              <span style="font-size:9px;color:#A06080;letter-spacing:.12em">VOTRE PHOTO</span>
+            </div>
+            <div style="height:8px;width:140px;background:#D880A8;border-radius:1px;opacity:.25"></div>
+            <div style="height:7px;width:100px;background:#6B2040;border-radius:1px;opacity:.06"></div>
+            <div style="width:88px;height:26px;background:#D880A8;border-radius:1px;margin-top:4px;display:flex;align-items:center;justify-content:center">
+              <div style="width:44px;height:5px;background:#FFF;border-radius:1px;opacity:.75"></div>
+            </div>
+          </div>
+        </div>
+        <div class="template-info">
+          <h3>Pétale</h3>
+          <p>Rose poudré &amp; blanc, élégance florale pour les mariages romantiques.</p>
+          <a href="#contact" class="template-link">Choisir ce template →</a>
+        </div>
+      </div>
+
+      <!-- Bohème (bientôt) -->
+      <div class="template-card">
+        <div class="preview" style="background:#EDE4D8">
+          <div class="preview-bar" style="background:#D8CCBC;border-color:#C8BAA8">
+            <div class="dot" style="background:#C4A880"></div><div class="dot" style="background:#C8B888"></div><div class="dot" style="background:#B8A878"></div>
+            <div class="preview-url" style="background:#C8BEB2"></div>
+          </div>
+          <div class="preview-blur" style="background:rgba(200,185,165,.72)">
+            <div class="coming-overlay">
+              <div class="title" style="color:#4A3420">Bientôt disponible</div>
+              <div class="sub" style="color:#7A5A3C">En préparation</div>
+            </div>
+          </div>
         </div>
         <div class="template-info">
           <h3>Bohème</h3>
           <p>Tons terreux, ambiance naturelle et poétique.</p>
+          <span class="template-soon">Bientôt disponible</span>
         </div>
       </div>
-      <div class="template-card coming-soon">
-        <div class="template-preview template-placeholder">
-          <span>Bientôt</span>
+
+      <!-- Moderne (bientôt) -->
+      <div class="template-card">
+        <div class="preview" style="background:#F2F2F0">
+          <div class="preview-bar" style="background:#E2E2DC;border-color:#D2D2CC">
+            <div class="dot" style="background:#D0C8C0"></div><div class="dot" style="background:#D0CCC0"></div><div class="dot" style="background:#C0C0B8"></div>
+            <div class="preview-url" style="background:#D2D2CC"></div>
+          </div>
+          <div class="preview-blur" style="background:rgba(228,228,226,.8)">
+            <div class="coming-overlay">
+              <div class="title" style="color:#282824">Bientôt disponible</div>
+              <div class="sub" style="color:#585850">En préparation</div>
+            </div>
+          </div>
         </div>
         <div class="template-info">
           <h3>Moderne</h3>
-          <p>Noir &amp; blanc, épuré, design contemporain.</p>
+          <p>Noir &amp; blanc, épuré et contemporain.</p>
+          <span class="template-soon">Bientôt disponible</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- TARIFS -->
+<section id="pricing">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="label"><div class="label-line" style="background:var(--gold)"></div><span class="label-text">Tarifs</span><div class="label-line" style="background:var(--gold)"></div></div>
+      <h2>Un investissement unique</h2>
+      <p class="section-sub">Tarif unique, pas d'abonnement. Votre site est livré clé en main.</p>
+    </div>
+
+    <div class="pricing-grid">
+
+      <!-- Essentiel -->
+      <div class="plan">
+        <p class="plan-label">Essentiel</p>
+        <div class="plan-price">
+          <span class="plan-num">249</span>
+          <span class="plan-currency">€</span>
+        </div>
+        <p class="plan-cycle">Paiement unique · TVA incluse</p>
+        <div class="plan-features">
+          <div class="plan-feat"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8l4 4 6-6" stroke="#C4954A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Site personnalisé dans votre template</span></div>
+          <div class="plan-feat"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8l4 4 6-6" stroke="#C4954A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Formulaire RSVP</span></div>
+          <div class="plan-feat"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8l4 4 6-6" stroke="#C4954A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Programme de la journée</span></div>
+          <div class="plan-feat"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8l4 4 6-6" stroke="#C4954A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Adapté mobile &amp; tablette</span></div>
+          <div class="plan-feat"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8l4 4 6-6" stroke="#C4954A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Hébergement 1 an</span></div>
+          <div class="plan-feat"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8l4 4 6-6" stroke="#C4954A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Livraison en 48h</span></div>
+          <div class="plan-feat"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8l4 4 6-6" stroke="#C4954A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span><strong>2 modifications</strong> incluses</span></div>
+        </div>
+        <a href="#contact" class="plan-cta-outline">Choisir Essentiel</a>
+      </div>
+
+      <!-- Complet (featured) -->
+      <div class="plan featured" style="padding:0">
+        <div class="plan-badge"><span>Le plus populaire</span></div>
+        <div style="padding:36px 40px 48px;display:flex;flex-direction:column;flex:1">
+          <p class="plan-label">Complet</p>
+          <div class="plan-price">
+            <span class="plan-num">349</span>
+            <span class="plan-currency">€</span>
+          </div>
+          <p class="plan-cycle">Paiement unique · TVA incluse</p>
+          <div class="plan-features">
+            <div class="plan-feat"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8l4 4 6-6" stroke="#C4954A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Tout du plan Essentiel</span></div>
+            <div class="plan-feat"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8l4 4 6-6" stroke="#C4954A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Galerie photos</span></div>
+            <div class="plan-feat"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8l4 4 6-6" stroke="#C4954A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span><strong>QR code</strong> pour faire-part</span></div>
+            <div class="plan-feat"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8l4 4 6-6" stroke="#C4954A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Liste de mariage &amp; cagnotte</span></div>
+            <div class="plan-feat"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8l4 4 6-6" stroke="#C4954A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Compte à rebours</span></div>
+            <div class="plan-feat"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8l4 4 6-6" stroke="#C4954A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span><strong>4 modifications</strong> incluses</span></div>
+          </div>
+          <a href="#contact" class="plan-cta-solid">Choisir Complet</a>
+        </div>
+      </div>
+
+      <!-- Premium -->
+      <div class="plan" style="border-right:none">
+        <p class="plan-label">Premium</p>
+        <div class="plan-price">
+          <span class="plan-num">449</span>
+          <span class="plan-currency">€</span>
+        </div>
+        <p class="plan-cycle">Paiement unique · TVA incluse</p>
+        <div class="plan-features">
+          <div class="plan-feat"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8l4 4 6-6" stroke="#C4954A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Tout du plan Complet</span></div>
+          <div class="plan-feat"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8l4 4 6-6" stroke="#C4954A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Nom de domaine personnalisé</span></div>
+          <div class="plan-feat"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8l4 4 6-6" stroke="#C4954A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Hébergement 2 ans</span></div>
+          <div class="plan-feat"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8l4 4 6-6" stroke="#C4954A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span><strong>Album post-mariage</strong> inclus</span></div>
+          <div class="plan-feat"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8l4 4 6-6" stroke="#C4954A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span><strong>10 modifications</strong> incluses (30 jours)</span></div>
+          <div class="plan-feat"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8l4 4 6-6" stroke="#C4954A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Accompagnement prioritaire</span></div>
+        </div>
+        <a href="#contact" class="plan-cta-outline">Choisir Premium</a>
+      </div>
+
+    </div>
+    <p class="pricing-note">Tous les tarifs incluent la TVA. Paiement sécurisé par virement ou carte bancaire.</p>
+  </div>
+</section>
+
+<!-- TÉMOIGNAGES -->
+<section class="bg-dark" id="testimonials">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="label"><div class="label-line" style="background:var(--gold)"></div><span class="label-text">Témoignages</span><div class="label-line" style="background:var(--gold)"></div></div>
+      <h2 style="color:#FAF8F3">Ils nous ont fait confiance</h2>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card">
+        <div class="testi-quote">"</div>
+        <p class="testi-text">Notre site était exactement ce qu'on imaginait. Tous nos invités ont adoré scanner le QR code sur l'invitation pour accéder au programme. Un service impeccable !</p>
+        <div class="testi-author">
+          <div class="testi-avatar"><span>C</span></div>
+          <div><div class="testi-name">Camille &amp; Théo</div><div class="testi-info">Juin 2025 · Template Élégant</div></div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-quote">"</div>
+        <p class="testi-text">En 48h notre site était en ligne, magnifique et complet. Le formulaire RSVP nous a évité des dizaines de messages WhatsApp. On recommande les yeux fermés !</p>
+        <div class="testi-author">
+          <div class="testi-avatar"><span>S</span></div>
+          <div><div class="testi-name">Sarah &amp; Matthieu</div><div class="testi-info">Avril 2025 · Template Élégant</div></div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-quote">"</div>
+        <p class="testi-text">Après le mariage, on a publié nos photos sur le site et nos invités ont pu tout télécharger facilement. C'est tellement pratique — une vraie valeur ajoutée !</p>
+        <div class="testi-author">
+          <div class="testi-avatar"><span>J</span></div>
+          <div><div class="testi-name">Julie &amp; Lucas</div><div class="testi-info">Septembre 2024 · Template Pétale</div></div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- CE QUI EST INCLUS -->
-  <section id="includes">
-    <p class="section-label">Ce qui est inclus</p>
-    <h2>Tout ce dont vous avez besoin</h2>
-    <ul class="includes-list">
-      <li><span class="check">✓</span> Programme de la journée</li>
-      <li><span class="check">✓</span> Formulaire RSVP en ligne</li>
-      <li><span class="check">✓</span> Lien vers votre liste de mariage ou cagnotte</li>
-      <li><span class="check">✓</span> Adapté mobile &amp; tablette</li>
-      <li><span class="check">✓</span> Hébergement inclus 1 an</li>
-      <li><span class="check">✓</span> Nom de domaine personnalisé en option</li>
-    </ul>
-  </section>
+<!-- FAQ -->
+<section class="bg-white" id="faq">
+  <div class="section-inner" style="max-width:760px">
+    <div class="section-header">
+      <div class="label"><div class="label-line" style="background:var(--gold)"></div><span class="label-text">FAQ</span><div class="label-line" style="background:var(--gold)"></div></div>
+      <h2>Questions fréquentes</h2>
+    </div>
+    <div id="faqContainer">
+      <!-- FAQ items injected by JS -->
+    </div>
+  </div>
+</section>
 
-  <!-- CONTACT -->
-  <section id="contact" class="contact-section">
-    <p class="section-label">Démarrer</p>
-    <h2>Parlons de votre mariage</h2>
-    <p class="contact-sub">Remplissez le formulaire ci-dessous et je vous réponds sous 24h.</p>
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-inner" style="max-width:640px">
+    <div class="section-header">
+      <div class="label"><div class="label-line" style="background:var(--gold)"></div><span class="label-text">Démarrer</span><div class="label-line" style="background:var(--gold)"></div></div>
+      <h2>Parlons de votre mariage</h2>
+      <p class="section-sub">Remplissez ce formulaire et nous vous répondons sous 24h.</p>
+    </div>
+
+    <div class="form-success" id="formSuccess">
+      <div class="check">✓</div>
+      <h3>Merci !</h3>
+      <p>Votre demande a bien été reçue.<br>Nous vous répondons dans les 24h.</p>
+    </div>
 
     <form id="contactForm" name="contact-monsitemariage" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" novalidate>
-      <input type="hidden" name="form-name" value="contact-monsitemariage" />
-      <p style="display:none"><label>Ne pas remplir : <input name="bot-field" /></label></p>
+      <input type="hidden" name="form-name" value="contact-monsitemariage"/>
+      <p style="display:none"><label>Ne pas remplir : <input name="bot-field"/></label></p>
 
-      <div class="form-group">
-        <label>Vos prénoms</label>
-        <input type="text" name="prenoms" placeholder="Ex : Sophie &amp; Thomas" required />
+      <div class="contact-grid" style="margin-bottom:32px">
+        <div class="form-group">
+          <label class="form-label">Vos prénoms</label>
+          <input type="text" name="prenoms" class="form-input" placeholder="Sophie &amp; Thomas" required/>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Email</label>
+          <input type="email" name="email" class="form-input" placeholder="votre@email.com" required/>
+        </div>
       </div>
-      <div class="form-group">
-        <label>Email</label>
-        <input type="text" name="email" placeholder="votre@email.com" required />
+      <div class="contact-grid" style="margin-bottom:32px">
+        <div class="form-group">
+          <label class="form-label">Date du mariage</label>
+          <input type="text" name="date" class="form-input" placeholder="12 septembre 2026"/>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Template souhaité</label>
+          <input type="text" name="template" class="form-input" placeholder="Ex : Élégant ou Pétale"/>
+        </div>
       </div>
-      <div class="form-group">
-        <label>Date du mariage</label>
-        <input type="text" name="date" placeholder="Ex : 12 septembre 2026" />
+      <div class="form-group" style="margin-bottom:32px">
+        <label class="form-label">Message <span style="font-weight:300;text-transform:none;letter-spacing:0;font-size:12px;color:var(--brown-light)">(optionnel)</span></label>
+        <textarea name="message" class="form-textarea" rows="4" placeholder="Parlez-nous de votre mariage…"></textarea>
       </div>
-      <div class="form-group">
-        <label>Template souhaité</label>
-        <input type="text" name="template" placeholder="Ex : Élégant" />
-      </div>
-      <div class="form-group">
-        <label>Message <span class="optional">(optionnel)</span></label>
-        <textarea name="message" placeholder="Parlez-nous un peu de votre mariage…"></textarea>
-      </div>
-      <button type="submit" class="btn-submit">Envoyer ma demande</button>
+      <button type="submit" class="form-submit">Envoyer ma demande</button>
     </form>
+  </div>
+</section>
 
-    <div class="success-msg" id="successMsg">
-      <span>Merci !</span><br/>
-      <small>Je vous réponds dans les 24h.</small>
-    </div>
-  </section>
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">
+    <span>Mon Site Mariage</span>
+    <p>Créé avec soin pour les amoureux</p>
+  </div>
+  <div class="footer-links">
+    <a href="#how">Comment ça marche</a>
+    <a href="#features">Fonctionnalités</a>
+    <a href="#pricing">Tarifs</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <p class="footer-copy">© 2025 Mon Site Mariage</p>
+</footer>
 
-  <footer>
-    <span>Mon Site Mariage</span> — Créé avec soin pour les amoureux
-  </footer>
+<script>
+  // Nav scroll
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 48);
+  }, { passive: true });
 
-  <script src="js/main.js"></script>
+  // FAQ
+  const faqs = [
+    {
+      q: "Combien de temps faut-il pour créer mon site ?",
+      a: "Votre site est en ligne en 48h après réception de vos informations et contenus. Pour les formules incluant une galerie photos, comptez 2 à 5 jours supplémentaires selon le nombre de photos."
+    },
+    {
+      q: "Puis-je modifier le contenu après livraison ?",
+      a: "Oui. Des ajustements de textes et de dates sont inclus selon votre forfait (2, 4 ou 10 modifications). Des changements plus importants peuvent être réalisés sur devis."
+    },
+    {
+      q: "Comment fonctionne le QR code pour les faire-part ?",
+      a: "Nous générons un QR code unique lié à votre site, optimisé pour l'impression (300 dpi). Il suffit de l'intégrer à vos faire-part — vos invités n'ont qu'à le scanner pour accéder à toutes les informations en temps réel."
+    },
+    {
+      q: "Comment fonctionne l'album photos post-mariage ?",
+      a: "Après votre mariage, nous mettons en ligne vos photos directement sur votre site. Vos invités peuvent les visualiser et les télécharger facilement depuis n'importe quel appareil, sans créer de compte. Cette fonctionnalité est incluse dans le plan Premium et disponible en option pour les autres plans."
+    },
+    {
+      q: "Le site fonctionne-t-il bien sur smartphone ?",
+      a: "Absolument. Tous nos templates sont conçus mobile-first. Vos invités peuvent confirmer leur présence, consulter le programme et accéder à la liste de mariage depuis leur smartphone, sans aucune friction."
+    },
+    {
+      q: "Puis-je voir un exemple de site avant de commander ?",
+      a: "Bien sûr ! Contactez-nous et nous vous envoyons un lien vers un site de démonstration complet dans le template de votre choix, avec toutes les fonctionnalités actives."
+    }
+  ];
+
+  const container = document.getElementById('faqContainer');
+  faqs.forEach((faq, i) => {
+    const item = document.createElement('div');
+    item.className = 'faq-item';
+    item.innerHTML = `
+      <div class="faq-header">
+        <span class="faq-q">${faq.q}</span>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-body"><p>${faq.a}</p></div>
+    `;
+    item.addEventListener('click', () => {
+      const body = item.querySelector('.faq-body');
+      const icon = item.querySelector('.faq-icon');
+      const isOpen = body.style.display === 'block';
+      // close all
+      document.querySelectorAll('.faq-body').forEach(b => b.style.display = 'none');
+      document.querySelectorAll('.faq-icon').forEach(ic => ic.textContent = '+');
+      if (!isOpen) {
+        body.style.display = 'block';
+        icon.textContent = '−';
+      }
+    });
+    container.appendChild(item);
+  });
+
+  // Contact form
+  document.getElementById('contactForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const prenoms = this.prenoms.value.trim();
+    const email = this.email.value.trim();
+    if (!prenoms) { alert('Merci d\'indiquer vos prénoms.'); return; }
+    if (!email)   { alert('Merci d\'indiquer votre email.'); return; }
+    fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams(new FormData(this)).toString()
+    })
+    .then(() => {
+      this.style.display = 'none';
+      document.getElementById('formSuccess').style.display = 'block';
+    })
+    .catch(() => {
+      this.style.display = 'none';
+      document.getElementById('formSuccess').style.display = 'block';
+    });
+  });
+</script>
 </body>
 </html>
