@@ -47,7 +47,7 @@
     .stat-num{font-family:'Cormorant Garamond',serif;font-size:44px;font-weight:400;color:var(--gold);line-height:1}
     .stat-label{font-size:11px;font-weight:400;letter-spacing:.1em;text-transform:uppercase;color:var(--brown-light);margin-top:6px}
     .stat-sep{width:1px;background:var(--gold-light);height:48px;align-self:center;opacity:.6}
-    .scroll-hint{position:absolute;bottom:36px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;opacity:.35;animation:fadeUp 1s ease .6s both}
+    .scroll-hint{position:absolute;bottom:36px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;opacity:.35;animation:bob 1s ease .6s both}
     .scroll-hint span{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--dark)}
 
     /* SECTIONS */
@@ -522,26 +522,6 @@
 
     <div class="pricing-grid">
 
-      <!-- Essentiel -->
-      <div class="plan">
-        <p class="plan-label">Essentiel</p>
-        <div class="plan-price">
-          <span class="plan-num">249</span>
-          <span class="plan-currency">€</span>
-        </div>
-        <p class="plan-cycle">Paiement unique · TVA incluse</p>
-        <div class="plan-features">
-          <div class="plan-feat"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8l4 4 6-6" stroke="#C4954A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Site personnalisé dans votre template</span></div>
-          <div class="plan-feat"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8l4 4 6-6" stroke="#C4954A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Formulaire RSVP</span></div>
-          <div class="plan-feat"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8l4 4 6-6" stroke="#C4954A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Programme de la journée</span></div>
-          <div class="plan-feat"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8l4 4 6-6" stroke="#C4954A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Adapté mobile &amp; tablette</span></div>
-          <div class="plan-feat"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8l4 4 6-6" stroke="#C4954A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Hébergement 1 an</span></div>
-          <div class="plan-feat"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8l4 4 6-6" stroke="#C4954A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Livraison en 48h</span></div>
-          <div class="plan-feat"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8l4 4 6-6" stroke="#C4954A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span><strong>2 modifications</strong> incluses</span></div>
-        </div>
-        <a href="#contact" class="plan-cta-outline">Choisir Essentiel</a>
-      </div>
-
       <!-- Complet (featured) -->
       <div class="plan featured" style="padding:0">
         <div class="plan-badge"><span>Le plus populaire</span></div>
@@ -553,7 +533,12 @@
           </div>
           <p class="plan-cycle">Paiement unique · TVA incluse</p>
           <div class="plan-features">
-            <div class="plan-feat"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8l4 4 6-6" stroke="#C4954A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Tout du plan Essentiel</span></div>
+            <div class="plan-feat"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8l4 4 6-6" stroke="#C4954A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Site personnalisé dans votre template</span></div>
+            <div class="plan-feat"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8l4 4 6-6" stroke="#C4954A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Formulaire RSVP</span></div>
+            <div class="plan-feat"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8l4 4 6-6" stroke="#C4954A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Programme de la journée</span></div>
+            <div class="plan-feat"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8l4 4 6-6" stroke="#C4954A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Adapté mobile &amp; tablette</span></div>
+            <div class="plan-feat"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8l4 4 6-6" stroke="#C4954A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Hébergement 1 an</span></div>
+            <div class="plan-feat"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8l4 4 6-6" stroke="#C4954A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Livraison en 48h</span></div>
             <div class="plan-feat"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8l4 4 6-6" stroke="#C4954A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Galerie photos</span></div>
             <div class="plan-feat"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8l4 4 6-6" stroke="#C4954A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span><strong>QR code</strong> pour faire-part</span></div>
             <div class="plan-feat"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8l4 4 6-6" stroke="#C4954A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Liste de mariage &amp; cagnotte</span></div>
@@ -574,7 +559,6 @@
         <p class="plan-cycle">Paiement unique · TVA incluse</p>
         <div class="plan-features">
           <div class="plan-feat"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8l4 4 6-6" stroke="#C4954A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Tout du plan Complet</span></div>
-          <div class="plan-feat"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8l4 4 6-6" stroke="#C4954A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Nom de domaine personnalisé</span></div>
           <div class="plan-feat"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8l4 4 6-6" stroke="#C4954A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Hébergement 2 ans</span></div>
           <div class="plan-feat"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8l4 4 6-6" stroke="#C4954A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span><strong>Album post-mariage</strong> inclus</span></div>
           <div class="plan-feat"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8l4 4 6-6" stroke="#C4954A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span><strong>10 modifications</strong> incluses (30 jours)</span></div>
@@ -652,9 +636,11 @@
       <p>Votre demande a bien été reçue.<br>Nous vous répondons dans les 24h.</p>
     </div>
 
-    <form id="contactForm" name="contact-monsitemariage" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" novalidate>
-      <input type="hidden" name="form-name" value="contact-monsitemariage"/>
-      <p style="display:none"><label>Ne pas remplir : <input name="bot-field"/></label></p>
+    <form id="contactForm" novalidate>
+      <input type="hidden" name="access_key" value="47832fd2-0128-4abf-9dd7-65d5f40fb8cd"/>
+      <input type="hidden" name="subject" value="Nouvelle demande — Mon Site Mariage"/>
+      <input type="hidden" name="from_name" value="Mon Site Mariage"/>
+      <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off"/>
 
       <div class="contact-grid" style="margin-bottom:32px">
         <div class="form-group">
@@ -702,8 +688,11 @@
     <a href="#features">Fonctionnalités</a>
     <a href="#pricing">Tarifs</a>
     <a href="#contact">Contact</a>
+    <a href="mentions-legales.html">Mentions légales</a>
+    <a href="cgv.html">CGV</a>
+    <a href="politique-confidentialite.html">Confidentialité</a>
   </div>
-  <p class="footer-copy">© 2025 Mon Site Mariage</p>
+  <p class="footer-copy">© 2026 Mon Site Mariage — GL C</p>
 </footer>
 
 <script>
@@ -768,25 +757,32 @@
   });
 
   // Contact form
-  document.getElementById('contactForm').addEventListener('submit', function(e) {
+  document.getElementById('contactForm').addEventListener('submit', async function(e) {
     e.preventDefault();
     const prenoms = this.prenoms.value.trim();
     const email = this.email.value.trim();
     if (!prenoms) { alert('Merci d\'indiquer vos prénoms.'); return; }
     if (!email)   { alert('Merci d\'indiquer votre email.'); return; }
-    fetch('/', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: new URLSearchParams(new FormData(this)).toString()
-    })
-    .then(() => {
-      this.style.display = 'none';
-      document.getElementById('formSuccess').style.display = 'block';
-    })
-    .catch(() => {
-      this.style.display = 'none';
-      document.getElementById('formSuccess').style.display = 'block';
-    });
+    const submitBtn = this.querySelector('.form-submit');
+    submitBtn.disabled = true;
+    try {
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify(Object.fromEntries(new FormData(this)))
+      });
+      const result = await res.json();
+      if (result.success) {
+        this.style.display = 'none';
+        document.getElementById('formSuccess').style.display = 'block';
+      } else {
+        alert('Une erreur est survenue. Merci de réessayer ou de nous écrire directement à monsitemariage@gmail.com');
+        submitBtn.disabled = false;
+      }
+    } catch (err) {
+      alert('Une erreur est survenue. Merci de réessayer ou de nous écrire directement à monsitemariage@gmail.com');
+      submitBtn.disabled = false;
+    }
   });
 </script>
 </body>
