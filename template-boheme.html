@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Léa & Antoine — 24 Mai 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+  <style>
+    /* ── DESIGN TOKENS ── */
+    :root {
+      --bg:         #F2E8D4;
+      --bg-white:   #EDE3CE;
+      --bg-dark:    #3D2510;
+      --text:       #3D2510;
+      --text-mid:   #7A5A3C;
+      --text-light: #A0806A;
+      --accent:     #C06040;
+      --green:      #7A8C6A;
+      --border:     rgba(192,96,64,.22);
+      --serif:      'Playfair Display', Georgia, serif;
+      --sans:       'DM Sans', system-ui, sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--sans); color: var(--text); background: var(--bg); -webkit-font-smoothing: antialiased; }
+    input, textarea, select, button { font-family: inherit; }
+    ::placeholder { color: var(--text-light); opacity: 1; }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      height: 68px; display: flex; align-items: center; justify-content: space-between;
+      padding: 0 48px;
+      background: rgba(242,232,212,.96);
+      backdrop-filter: blur(12px);
+    }
+    .nav-date { font-size: 10px; font-weight: 300; letter-spacing: .14em; text-transform: uppercase; color: var(--text-light); }
+    .nav-logo { font-family: var(--serif); font-size: 20px; font-style: italic; color: var(--text); }
+    .nav-place { font-size: 10px; font-weight: 300; letter-spacing: .14em; text-transform: uppercase; color: var(--green); }
+    .nav-divider { height: 1px; background: var(--border); margin: 0 48px; }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh; display: flex; flex-direction: column; align-items: center;
+      justify-content: center; padding: 110px 48px 80px; text-align: center;
+      position: relative; overflow: hidden;
+    }
+    .hero-texture {
+      position: absolute; inset: 0; opacity: .04; pointer-events: none;
+      background-image: repeating-linear-gradient(45deg, transparent, transparent 6px, #7A5A3C 6px, #7A5A3C 7px);
+    }
+    .hero-inner { position: relative; max-width: 680px; }
+    .hero-botanical { margin-bottom: 20px; }
+    .hero-names  { font-family: var(--serif); font-size: clamp(52px,8vw,92px); font-style: italic; font-weight: 400; color: var(--text); line-height: 1.08; margin-bottom: 20px; }
+    .hero-quote  { font-family: var(--serif); font-size: 16px; font-style: italic; color: var(--text-mid); margin-bottom: 24px; }
+    .hero-divider { height: 1px; width: 80px; margin: 0 auto 20px; background: linear-gradient(90deg, transparent, var(--accent), transparent); }
+    .hero-venue  { font-size: 15px; font-weight: 500; color: var(--accent); letter-spacing: .04em; }
+    .hero-place  { font-size: 12px; font-weight: 300; color: var(--text-light); margin-top: 5px; }
+    .hero-ctas   { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-top: 36px; }
+    .btn-primary { display: inline-block; padding: 14px 40px; background: var(--accent); color: #fff; font-size: 12px; font-weight: 500; letter-spacing: .09em; text-transform: uppercase; text-decoration: none; border-radius: 2px; transition: background .2s; }
+    .btn-primary:hover { background: #A04830; }
+    .btn-outline { display: inline-block; padding: 13px 40px; border: 1.5px solid var(--accent); color: var(--accent); font-size: 12px; font-weight: 500; letter-spacing: .09em; text-transform: uppercase; text-decoration: none; border-radius: 2px; transition: .2s; }
+    .btn-outline:hover { background: var(--accent); color: #fff; }
+
+    /* ── COUNTDOWN ── */
+    .countdown { display: flex; gap: 48px; justify-content: center; margin-top: 60px; flex-wrap: wrap; }
+    .count-num { font-family: var(--serif); font-size: 48px; font-weight: 400; color: var(--accent); line-height: 1; }
+    .count-lbl { font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--text-light); margin-top: 6px; }
+    .count-sep { width: 1px; background: var(--border); height: 44px; align-self: center; }
+
+    /* ── SECTION ── */
+    section { padding: 104px 48px; }
+    .section-inner { max-width: 1100px; margin: 0 auto; }
+    .section-head { text-align: center; margin-bottom: 64px; }
+    .section-title { font-family: var(--serif); font-size: clamp(34px,5vw,52px); font-style: italic; font-weight: 400; color: var(--text); }
+    .section-desc { font-size: 15px; font-weight: 300; color: var(--text-light); margin-top: 14px; max-width: 440px; margin-left: auto; margin-right: auto; line-height: 1.8; }
+
+    /* ── PROGRAMME ── */
+    #programme { background: var(--bg-white); }
+    .tl-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2px; background: rgba(192,96,64,.15); max-width: 800px; margin: 0 auto; }
+    .tl-card { background: var(--bg); padding: 36px 32px; }
+    .tl-time-b { font-family: var(--serif); font-size: 32px; font-style: italic; color: var(--accent); line-height: 1; margin-bottom: 10px; }
+    .tl-name-b { font-family: var(--serif); font-size: 20px; font-weight: 500; color: var(--text); margin-bottom: 8px; }
+    .tl-desc-b { font-size: 14px; font-weight: 300; color: var(--text-light); line-height: 1.7; }
+
+    /* ── RSVP ── */
+    #rsvp { background: var(--bg); }
+    .rsvp-form { max-width: 620px; margin: 0 auto; display: flex; flex-direction: column; gap: 28px; }
+    .form-row  { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+    .form-field label { display: block; font-size: 10px; font-weight: 500; letter-spacing: .15em; text-transform: uppercase; color: var(--accent); margin-bottom: 10px; }
+    .form-field input,
+    .form-field select,
+    .form-field textarea { width: 100%; border: none; border-bottom: 1.5px solid rgba(192,96,64,.3); padding: 10px 0; background: transparent; font-size: 15px; font-weight: 300; color: var(--text); outline: none; transition: border-color .2s; }
+    .form-field input:focus,
+    .form-field select:focus,
+    .form-field textarea:focus { border-bottom-color: var(--accent); }
+    .form-field textarea { resize: none; line-height: 1.7; }
+    .btn-submit { width: 100%; padding: 17px; background: var(--accent); color: #fff; font-size: 12px; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; border: none; cursor: pointer; border-radius: 2px; transition: background .2s; }
+    .btn-submit:hover { background: #A04830; }
+
+    /* ── ACCÈS ── */
+    #acces { background: var(--bg-white); }
+    .acces-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: start; }
+    .acces-map  { height: 300px; background: linear-gradient(135deg, #C8B89A 0%, #D8C8AA 100%); display: flex; align-items: center; justify-content: center; border-radius: 2px; }
+    .acces-map span { font-size: 11px; font-weight: 300; letter-spacing: .1em; text-transform: uppercase; color: var(--text-light); }
+    .acces-info h3 { font-family: var(--serif); font-size: 26px; font-style: italic; color: var(--text); margin-bottom: 16px; }
+    .acces-addr { font-size: 14px; font-weight: 300; color: var(--text-mid); line-height: 1.85; margin-bottom: 24px; }
+    .acces-list { display: flex; flex-direction: column; gap: 13px; }
+    .acces-item { font-size: 13px; font-weight: 300; color: var(--text-mid); line-height: 1.65; padding-left: 18px; border-left: 2px solid var(--accent); }
+    .acces-link { color: var(--accent); text-decoration: none; }
+
+    /* ── FOOTER ── */
+    footer { padding: 44px 48px; background: var(--bg-dark); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; }
+    .footer-logo { font-family: var(--serif); font-size: 19px; font-style: italic; color: #F2E8D4; }
+    .footer-sub  { font-size: 12px; font-weight: 300; color: rgba(242,232,212,.4); margin-top: 4px; }
+    .footer-links a { font-size: 13px; font-weight: 300; color: rgba(242,232,212,.4); text-decoration: none; margin-left: 24px; transition: color .2s; }
+    .footer-links a:hover { color: var(--accent); }
+    .footer-copy { font-size: 12px; color: rgba(242,232,212,.3); }
+
+    @media (max-width: 768px) {
+      nav { padding: 0 20px; }
+      section { padding: 68px 24px; }
+      .tl-grid { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      .acces-grid { grid-template-columns: 1fr; }
+      footer { flex-direction: column; text-align: center; padding: 32px 24px; }
+      .footer-links a { margin: 0 12px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAVIGATION ── -->
+<nav>
+  <span class="nav-date">24 mai 2026</span>
+  <span class="nav-logo">L &amp; A</span>
+  <span class="nav-place">Provence</span>
+</nav>
+<div class="nav-divider"></div>
+
+<!-- ── HERO ── -->
+<section id="hero">
+  <div class="hero-texture"></div>
+  <div class="hero-inner">
+    <div class="hero-botanical">
+      <svg width="160" height="56" viewBox="0 0 160 56" fill="none">
+        <path d="M80 54 Q68 42 54 30 Q40 20 26 12 Q16 6 10 2" stroke="#7A8C6A" stroke-width="1.3" stroke-linecap="round" fill="none"/>
+        <path d="M54 30 Q42 18 46 6 Q50 18 54 30" fill="#7A8C6A" opacity=".5"/>
+        <path d="M28 14 Q14 8 18 0 Q23 11 28 14" fill="#7A8C6A" opacity=".4"/>
+        <circle cx="10" cy="2" r="2.8" fill="#C06040" opacity=".6"/>
+        <path d="M80 54 Q92 42 106 30 Q120 20 134 12 Q144 6 150 2" stroke="#7A8C6A" stroke-width="1.3" stroke-linecap="round" fill="none"/>
+        <path d="M106 30 Q118 18 114 6 Q110 18 106 30" fill="#7A8C6A" opacity=".5"/>
+        <path d="M132 14 Q146 8 142 0 Q137 11 132 14" fill="#7A8C6A" opacity=".4"/>
+        <circle cx="150" cy="2" r="2.8" fill="#C06040" opacity=".6"/>
+      </svg>
+    </div>
+    <h1 class="hero-names">Léa<br>&amp; Antoine</h1>
+    <p class="hero-quote">"Rejoignez-nous pour célébrer notre amour"</p>
+    <div class="hero-divider"></div>
+    <p class="hero-venue">Mas des Oliviers</p>
+    <p class="hero-place">Saint-Rémy-de-Provence · Bouches-du-Rhône</p>
+    <div class="hero-ctas">
+      <a href="#rsvp" class="btn-primary">Confirmer ma présence</a>
+      <a href="#programme" class="btn-outline">Voir le programme</a>
+    </div>
+  </div>
+  <div class="countdown">
+    <div class="count-item"><div class="count-num" id="cd-days">—</div><div class="count-lbl">Jours</div></div>
+    <div class="count-sep"></div>
+    <div class="count-item"><div class="count-num" id="cd-hours">—</div><div class="count-lbl">Heures</div></div>
+    <div class="count-sep"></div>
+    <div class="count-item"><div class="count-num" id="cd-min">—</div><div class="count-lbl">Minutes</div></div>
+  </div>
+</section>
+
+<!-- ── PROGRAMME ── -->
+<section id="programme">
+  <div class="section-inner">
+    <div class="section-head">
+      <h2 class="section-title">La journée du 24 mai</h2>
+      <p class="section-desc">Un programme tout en douceur, au rythme de la Provence en fleurs.</p>
+    </div>
+    <div class="tl-grid">
+      <div class="tl-card"><div class="tl-time-b">15h30</div><div class="tl-name-b">Cérémonie laïque</div><div class="tl-desc-b">Sous les oliviers centenaires du mas, face aux Alpilles.</div></div>
+      <div class="tl-card"><div class="tl-time-b">17h00</div><div class="tl-name-b">Cocktail en terrasse</div><div class="tl-desc-b">Rosé de Provence, tapas locales, musique douce.</div></div>
+      <div class="tl-card"><div class="tl-time-b">19h30</div><div class="tl-name-b">Dîner sous les étoiles</div><div class="tl-desc-b">Longues tablées provençales, cuisine du terroir, vins naturels.</div></div>
+      <div class="tl-card"><div class="tl-time-b">23h00</div><div class="tl-name-b">Soirée dansante</div><div class="tl-desc-b">DJ set & blind test jusqu'au bout de la nuit.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── RSVP ── -->
+<section id="rsvp">
+  <div class="section-inner">
+    <div class="section-head">
+      <h2 class="section-title">Répondre avant le 15 avril</h2>
+      <p class="section-desc">Votre confirmation nous permet d'organiser les meilleures conditions pour vous accueillir.</p>
+    </div>
+    <form class="rsvp-form" id="rsvp-form">
+      <div class="form-row">
+        <div class="form-field"><label>Vos prénoms &amp; noms</label><input type="text" placeholder="Léa Martin" required></div>
+        <div class="form-field"><label>Email</label><input type="email" placeholder="lea@email.com" required></div>
+      </div>
+      <div class="form-row">
+        <div class="form-field"><label>Présence</label><select><option>Avec grand plaisir !</option><option>Je ne pourrai pas venir</option></select></div>
+        <div class="form-field"><label>Nombre de personnes</label><select><option>1 personne</option><option>2 personnes</option><option>3 personnes</option><option>4+</option></select></div>
+      </div>
+      <div class="form-field"><label>Régime / allergies <span style="text-transform:none;letter-spacing:0;font-weight:300;">(optionnel)</span></label><textarea placeholder="Végétarien, intolérant au lactose…" rows="3"></textarea></div>
+      <div class="form-field"><label>Un petit mot <span style="text-transform:none;letter-spacing:0;font-weight:300;">(optionnel)</span></label><textarea placeholder="Pour les amoureux…" rows="3"></textarea></div>
+      <button type="submit" class="btn-submit">Envoyer ma réponse</button>
+    </form>
+  </div>
+</section>
+
+<!-- ── ACCÈS ── -->
+<section id="acces">
+  <div class="section-inner">
+    <div class="section-head">
+      <h2 class="section-title">Comment nous rejoindre</h2>
+    </div>
+    <div class="acces-grid">
+      <div class="acces-map"><span>Carte interactive</span></div>
+      <div class="acces-info">
+        <h3>Mas des Oliviers</h3>
+        <p class="acces-addr">Route des Baux<br>13210 Saint-Rémy-de-Provence<br>Bouches-du-Rhône, PACA</p>
+        <div class="acces-list">
+          <div class="acces-item"><strong>GPS :</strong> 43.787, 4.831 — <a href="#" class="acces-link">Google Maps</a></div>
+          <div class="acces-item"><strong>TGV :</strong> Avignon TGV (35min) puis navette organisée par les mariés</div>
+          <div class="acces-item"><strong>Voiture :</strong> A7 sortie Avignon Sud, puis D99 vers Saint-Rémy (45min)</div>
+          <div class="acces-item"><strong>Hébergement :</strong> Chambre d'hôtes Les Olivades à 5min · <a href="#" class="acces-link">Bloc réservé</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div><div class="footer-logo">Léa &amp; Antoine</div><p class="footer-sub">24 mai 2026 · Provence</p></div>
+  <div class="footer-links"><a href="#programme">Programme</a><a href="#rsvp">RSVP</a><a href="#acces">Accès</a></div>
+  <p class="footer-copy">Site créé avec Mon Site Mariage</p>
+</footer>
+
+<script>
+  (function() {
+    const target = new Date('2026-05-24T15:30:00');
+    function update() {
+      const diff = target - new Date();
+      if (diff <= 0) return;
+      document.getElementById('cd-days').textContent  = Math.floor(diff / 86400000);
+      document.getElementById('cd-hours').textContent = String(Math.floor((diff % 86400000) / 3600000)).padStart(2,'0');
+      document.getElementById('cd-min').textContent   = String(Math.floor((diff % 3600000) / 60000)).padStart(2,'0');
+    }
+    update(); setInterval(update, 30000);
+  })();
+  document.getElementById('rsvp-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    this.innerHTML = '<div style="text-align:center;padding:56px 0"><p style="font-family:var(--serif);font-size:44px;color:var(--accent);font-style:italic">Merci !</p><p style="font-weight:300;color:var(--text-light);margin-top:12px">Votre réponse a bien été enregistrée.</p></div>';
+  });
+</script>
+</body>
+</html>

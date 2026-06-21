@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clara & Hugo — 18 Octobre 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+  <style>
+    /* ── DESIGN TOKENS ── */
+    :root {
+      --bg:         #F7F7F5;
+      --bg-off:     #EFEFED;
+      --bg-dark:    #1A1A18;
+      --text:       #1A1A18;
+      --text-mid:   #6A6A62;
+      --text-light: #A0A098;
+      --border:     #D0D0C8;
+      --sans:       'DM Sans', system-ui, sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--sans); color: var(--text); background: var(--bg); -webkit-font-smoothing: antialiased; }
+    input, textarea, select, button { font-family: inherit; }
+    ::placeholder { color: var(--text-light); opacity: 1; }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      height: 68px; display: flex; align-items: center; justify-content: space-between;
+      padding: 0 52px;
+      background: var(--bg);
+      border-bottom: 2px solid var(--text);
+    }
+    .nav-logo  { font-size: 20px; font-weight: 700; color: var(--text); text-decoration: none; letter-spacing: -.02em; }
+    .nav-links { display: flex; gap: 32px; align-items: center; }
+    .nav-links a { font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--text-mid); text-decoration: none; transition: color .2s; }
+    .nav-links a:hover { color: var(--text); }
+    .nav-cta { padding: 9px 22px; background: var(--text); color: var(--bg) !important; transition: opacity .2s !important; }
+    .nav-cta:hover { opacity: .8 !important; }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh; display: flex; flex-direction: column; justify-content: flex-end;
+      padding: 100px 52px 72px; position: relative; overflow: hidden;
+    }
+    .hero-watermark {
+      position: absolute; top: 80px; left: 40px; right: 0; overflow: hidden; pointer-events: none;
+      font-size: clamp(80px, 14vw, 160px); font-weight: 700; color: var(--text); opacity: .04;
+      line-height: 1; letter-spacing: -.05em; white-space: nowrap;
+    }
+    .hero-tag  { display: inline-flex; align-items: center; gap: 10px; background: var(--text); color: var(--bg); padding: 6px 14px; font-size: 10px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; margin-bottom: 24px; }
+    .hero-names { font-size: clamp(56px,9vw,108px); font-weight: 700; color: var(--text); line-height: .92; letter-spacing: -.04em; margin-bottom: 24px; }
+    .hero-rule  { height: 2px; width: 64px; background: var(--text); margin-bottom: 20px; }
+    .hero-venue { font-size: 16px; font-weight: 500; color: var(--text); margin-bottom: 4px; }
+    .hero-place { font-size: 13px; font-weight: 300; color: var(--text-mid); margin-bottom: 40px; }
+    .hero-ctas  { display: flex; gap: 12px; flex-wrap: wrap; }
+    .btn-primary { display: inline-block; padding: 15px 44px; background: var(--text); color: var(--bg); font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; text-decoration: none; transition: opacity .2s; }
+    .btn-primary:hover { opacity: .8; }
+    .btn-outline { display: inline-block; padding: 14px 44px; border: 2px solid var(--text); color: var(--text); font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; text-decoration: none; transition: .2s; }
+    .btn-outline:hover { background: var(--text); color: var(--bg); }
+
+    /* ── COUNTDOWN ── */
+    .countdown { display: flex; gap: 0; margin-top: 72px; border-top: 1px solid var(--border); }
+    .count-item { flex: 1; padding: 28px 0; text-align: center; border-right: 1px solid var(--border); }
+    .count-item:last-child { border-right: none; }
+    .count-num { font-size: 44px; font-weight: 700; color: var(--text); line-height: 1; letter-spacing: -.04em; }
+    .count-lbl { font-size: 9px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--text-light); margin-top: 6px; }
+
+    /* ── SECTION ── */
+    section { padding: 104px 52px; }
+    .section-inner { max-width: 1100px; margin: 0 auto; }
+    .section-head { margin-bottom: 64px; }
+    .section-kicker { font-size: 10px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--text-mid); margin-bottom: 12px; }
+    .section-title  { font-size: clamp(32px,5vw,52px); font-weight: 700; color: var(--text); letter-spacing: -.03em; line-height: 1; }
+    .section-desc   { font-size: 15px; font-weight: 300; color: var(--text-mid); margin-top: 14px; max-width: 440px; line-height: 1.8; }
+
+    /* ── PROGRAMME ── */
+    #programme { background: var(--bg-off); }
+    .tl-list { display: flex; flex-direction: column; gap: 0; max-width: 760px; }
+    .tl-item { display: grid; grid-template-columns: 100px 1fr; align-items: start; padding: 28px 0; border-top: 1px solid var(--border); gap: 32px; }
+    .tl-time { font-size: 24px; font-weight: 700; color: var(--text); letter-spacing: -.03em; }
+    .tl-name { font-size: 18px; font-weight: 600; color: var(--text); margin-bottom: 6px; }
+    .tl-desc { font-size: 14px; font-weight: 300; color: var(--text-mid); line-height: 1.7; }
+
+    /* ── RSVP ── */
+    #rsvp { background: var(--bg); }
+    .rsvp-form { max-width: 640px; display: flex; flex-direction: column; gap: 28px; }
+    .form-row  { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+    .form-field label { display: block; font-size: 10px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--text); margin-bottom: 10px; }
+    .form-field input,
+    .form-field select,
+    .form-field textarea { width: 100%; border: none; border-bottom: 2px solid var(--border); padding: 10px 0; background: transparent; font-size: 15px; font-weight: 300; color: var(--text); outline: none; transition: border-color .2s; }
+    .form-field input:focus,
+    .form-field select:focus,
+    .form-field textarea:focus { border-bottom-color: var(--text); }
+    .form-field textarea { resize: none; line-height: 1.7; }
+    .btn-submit { padding: 17px; background: var(--text); color: var(--bg); font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; border: none; cursor: pointer; transition: opacity .2s; }
+    .btn-submit:hover { opacity: .8; }
+
+    /* ── ACCÈS ── */
+    #acces { background: var(--bg-off); }
+    .acces-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; }
+    .acces-map  { height: 320px; background: var(--bg); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; }
+    .acces-map span { font-size: 11px; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; color: var(--text-light); }
+    .acces-info h3 { font-size: 24px; font-weight: 700; color: var(--text); letter-spacing: -.02em; margin-bottom: 14px; }
+    .acces-addr { font-size: 14px; font-weight: 300; color: var(--text-mid); line-height: 1.9; margin-bottom: 24px; }
+    .acces-list { display: flex; flex-direction: column; gap: 12px; }
+    .acces-item { display: flex; gap: 12px; align-items: flex-start; }
+    .acces-bullet { width: 6px; height: 6px; background: var(--text); flex-shrink: 0; margin-top: 6px; }
+    .acces-txt  { font-size: 13px; font-weight: 300; color: var(--text-mid); line-height: 1.65; }
+    .acces-link { color: var(--text); text-decoration: underline; }
+
+    /* ── FOOTER ── */
+    footer { padding: 44px 52px; background: var(--text); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; }
+    .footer-logo  { font-size: 18px; font-weight: 700; color: var(--bg); letter-spacing: -.02em; }
+    .footer-sub   { font-size: 11px; font-weight: 300; color: rgba(247,247,245,.4); margin-top: 4px; }
+    .footer-links a { font-size: 12px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: rgba(247,247,245,.4); text-decoration: none; margin-left: 24px; transition: color .2s; }
+    .footer-links a:hover { color: var(--bg); }
+    .footer-copy  { font-size: 11px; color: rgba(247,247,245,.3); }
+
+    @media (max-width: 768px) {
+      nav { padding: 0 20px; }
+      .nav-links { display: none; }
+      section { padding: 68px 24px; }
+      #hero { padding: 90px 24px 56px; }
+      .form-row { grid-template-columns: 1fr; }
+      .acces-grid { grid-template-columns: 1fr; }
+      footer { flex-direction: column; text-align: center; padding: 32px 24px; }
+      .footer-links a { margin: 0 12px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAVIGATION ── -->
+<nav>
+  <a href="#" class="nav-logo">C/H</a>
+  <div class="nav-links">
+    <a href="#programme">Programme</a>
+    <a href="#acces">Accès</a>
+    <a href="#rsvp" class="nav-cta">RSVP →</a>
+  </div>
+</nav>
+
+<!-- ── HERO ── -->
+<section id="hero">
+  <div class="hero-watermark">18.10.26</div>
+  <div>
+    <div class="hero-tag">
+      <span>Paris · 11e</span>
+      <span style="opacity:.4">|</span>
+      <span>18 octobre 2026</span>
+    </div>
+    <h1 class="hero-names">Clara<br>&amp; Hugo</h1>
+    <div class="hero-rule"></div>
+    <p class="hero-venue">La Scène Bastille</p>
+    <p class="hero-place">11ème arrondissement, Paris</p>
+    <div class="hero-ctas">
+      <a href="#rsvp" class="btn-primary">Confirmer ma présence</a>
+      <a href="#programme" class="btn-outline">Programme</a>
+    </div>
+  </div>
+  <div class="countdown">
+    <div class="count-item"><div class="count-num" id="cd-days">—</div><div class="count-lbl">Jours</div></div>
+    <div class="count-item"><div class="count-num" id="cd-hours">—</div><div class="count-lbl">Heures</div></div>
+    <div class="count-item"><div class="count-num" id="cd-min">—</div><div class="count-lbl">Minutes</div></div>
+  </div>
+</section>
+
+<!-- ── PROGRAMME ── -->
+<section id="programme">
+  <div class="section-inner">
+    <div class="section-head">
+      <div class="section-kicker">Samedi 18 octobre 2026</div>
+      <h2 class="section-title">Programme<br>de la journée</h2>
+    </div>
+    <div class="tl-list">
+      <div class="tl-item"><div class="tl-time">16h</div><div><div class="tl-name">Cérémonie</div><div class="tl-desc">Cérémonie laïque à La Scène Bastille. Salle principale, rez-de-chaussée.</div></div></div>
+      <div class="tl-item"><div class="tl-time">17h30</div><div><div class="tl-name">Cocktail</div><div class="tl-desc">Cocktail dînatoire dans le foyer et les jardins d'hiver de La Scène.</div></div></div>
+      <div class="tl-item"><div class="tl-time">20h30</div><div><div class="tl-name">Dîner</div><div class="tl-desc">Dîner gastronomique, service en salle. Menu dévoilé le soir J.</div></div></div>
+      <div class="tl-item"><div class="tl-time">23h</div><div><div class="tl-name">Soirée</div><div class="tl-desc">DJ set & open bar jusqu'à 4h du matin.</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── RSVP ── -->
+<section id="rsvp">
+  <div class="section-inner">
+    <div class="section-head">
+      <div class="section-kicker">Répondre avant le 1er septembre 2026</div>
+      <h2 class="section-title">Confirmer<br>ma présence</h2>
+    </div>
+    <form class="rsvp-form" id="rsvp-form">
+      <div class="form-row">
+        <div class="form-field"><label>Prénom &amp; nom</label><input type="text" placeholder="Clara Bernard" required></div>
+        <div class="form-field"><label>Email</label><input type="email" placeholder="clara@email.com" required></div>
+      </div>
+      <div class="form-row">
+        <div class="form-field"><label>Présence</label><select><option>Je serai là !</option><option>Je ne pourrai pas venir</option></select></div>
+        <div class="form-field"><label>Nombre de personnes</label><select><option>1</option><option>2</option><option>3</option><option>4+</option></select></div>
+      </div>
+      <div class="form-field"><label>Régime / allergies</label><textarea placeholder="Végétarien, sans gluten…" rows="3"></textarea></div>
+      <div class="form-field"><label>Message</label><textarea placeholder="Un mot pour Clara & Hugo…" rows="3"></textarea></div>
+      <button type="submit" class="btn-submit">Envoyer →</button>
+    </form>
+  </div>
+</section>
+
+<!-- ── ACCÈS ── -->
+<section id="acces">
+  <div class="section-inner">
+    <div class="section-head">
+      <div class="section-kicker">Comment venir</div>
+      <h2 class="section-title">Accès &amp;<br>hébergement</h2>
+    </div>
+    <div class="acces-grid">
+      <div class="acces-map"><span>Carte interactive</span></div>
+      <div class="acces-info">
+        <h3>La Scène Bastille</h3>
+        <p class="acces-addr">2 bis rue de la Roquette<br>75011 Paris<br>Métro Bastille — Lignes 1, 5, 8</p>
+        <div class="acces-list">
+          <div class="acces-item"><div class="acces-bullet"></div><div class="acces-txt"><strong>Métro :</strong> Bastille (lignes 1, 5, 8), sortie Bd Richard-Lenoir — 3 min à pied</div></div>
+          <div class="acces-item"><div class="acces-bullet"></div><div class="acces-txt"><strong>Vélo :</strong> Station Vélib' à 50m (n°11040)</div></div>
+          <div class="acces-item"><div class="acces-bullet"></div><div class="acces-txt"><strong>Voiture :</strong> Parking Bastille (bd de la Bastille) — 8 min à pied</div></div>
+          <div class="acces-item"><div class="acces-bullet"></div><div class="acces-txt"><strong>Hôtel :</strong> Hôtel Fabric (11e) — 300m. <a href="#" class="acces-link">Code promo CLARAHUGO</a></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div><div class="footer-logo">Clara &amp; Hugo</div><p class="footer-sub">18 octobre 2026 · Paris 11e</p></div>
+  <div class="footer-links"><a href="#programme">Programme</a><a href="#rsvp">RSVP</a><a href="#acces">Accès</a></div>
+  <p class="footer-copy">Site créé avec Mon Site Mariage</p>
+</footer>
+
+<script>
+  (function() {
+    const target = new Date('2026-10-18T16:00:00');
+    function update() {
+      const diff = target - new Date();
+      if (diff <= 0) return;
+      document.getElementById('cd-days').textContent  = Math.floor(diff / 86400000);
+      document.getElementById('cd-hours').textContent = String(Math.floor((diff % 86400000) / 3600000)).padStart(2,'0');
+      document.getElementById('cd-min').textContent   = String(Math.floor((diff % 3600000) / 60000)).padStart(2,'0');
+    }
+    update(); setInterval(update, 30000);
+  })();
+  document.getElementById('rsvp-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    this.innerHTML = '<div style="padding:56px 0"><p style="font-size:42px;font-weight:700;letter-spacing:-.03em;color:var(--text)">Merci !</p><p style="font-weight:300;color:var(--text-mid);margin-top:10px">Votre réponse a bien été enregistrée.</p></div>';
+  });
+</script>
+</body>
+</html>

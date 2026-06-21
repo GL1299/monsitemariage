@@ -95,6 +95,9 @@
     .template-info h3{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:500;color:var(--dark);margin-bottom:8px}
     .template-info p{font-size:14px;font-weight:300;color:var(--brown-light);line-height:1.65;margin-bottom:16px}
     .template-link{font-size:13px;font-weight:500;color:var(--gold);text-decoration:none;border-bottom:1px solid var(--gold-light);padding-bottom:2px;letter-spacing:.04em}
+    .template-actions{display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+    .template-view{font-size:13px;font-weight:400;color:var(--brown);text-decoration:none;border-bottom:1px solid var(--border);padding-bottom:2px;letter-spacing:.04em;transition:color .2s,border-color .2s}
+    .template-view:hover{color:var(--gold);border-color:var(--gold-light)}
     .template-soon{font-size:13px;font-weight:400;color:#B09070;letter-spacing:.04em}
     .coming-overlay{text-align:center}
     .coming-overlay .title{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:400;font-style:italic;margin-bottom:8px}
@@ -428,7 +431,10 @@
         <div class="template-info">
           <h3>Élégant</h3>
           <p>Crème &amp; or, typographie serif — intemporel et raffiné.</p>
-          <a href="#contact" class="template-link">Choisir ce template →</a>
+          <div class="template-actions">
+            <a href="#contact" class="template-link">Choisir ce template →</a>
+            <a href="template-elegant.html" class="template-view" target="_blank" rel="noopener">Voir le template</a>
+          </div>
         </div>
       </div>
 
@@ -461,49 +467,74 @@
         <div class="template-info">
           <h3>Pétale</h3>
           <p>Rose poudré &amp; blanc, élégance florale pour les mariages romantiques.</p>
-          <a href="#contact" class="template-link">Choisir ce template →</a>
+          <div class="template-actions">
+            <a href="#contact" class="template-link">Choisir ce template →</a>
+            <a href="template-petale.html" class="template-view" target="_blank" rel="noopener">Voir le template</a>
+          </div>
         </div>
       </div>
 
-      <!-- Bohème (bientôt) -->
+      <!-- Bohème -->
       <div class="template-card">
-        <div class="preview" style="background:#EDE4D8">
-          <div class="preview-bar" style="background:#D8CCBC;border-color:#C8BAA8">
+        <div class="preview" style="background:#F2E8D4">
+          <div class="preview-bar" style="background:#EDE3CE;border-color:#D8C8A8">
             <div class="dot" style="background:#C4A880"></div><div class="dot" style="background:#C8B888"></div><div class="dot" style="background:#B8A878"></div>
-            <div class="preview-url" style="background:#C8BEB2"></div>
+            <div class="preview-url" style="background:#E0D0B0"></div>
           </div>
-          <div class="preview-blur" style="background:rgba(200,185,165,.72)">
-            <div class="coming-overlay">
-              <div class="title" style="color:#4A3420">Bientôt disponible</div>
-              <div class="sub" style="color:#7A5A3C">En préparation</div>
+          <div class="preview-content">
+            <div style="height:1px;width:60px;background:linear-gradient(90deg,transparent,#C06040,transparent)"></div>
+            <div style="height:18px;width:160px;background:#3D2510;border-radius:1px;opacity:.1;font-style:italic"></div>
+            <div style="height:10px;width:120px;background:#3D2510;border-radius:1px;opacity:.06"></div>
+            <div style="width:100%;height:4px"></div>
+            <div style="width:100%;height:100px;background:linear-gradient(135deg,#C8B89A,#D8C8AA,#C8B89A);display:flex;align-items:center;justify-content:center">
+              <span style="font-size:9px;color:#7A5A3C;letter-spacing:.12em">VOTRE PHOTO</span>
+            </div>
+            <div style="height:8px;width:140px;background:#C06040;border-radius:1px;opacity:.25"></div>
+            <div style="height:7px;width:100px;background:#3D2510;border-radius:1px;opacity:.06"></div>
+            <div style="width:88px;height:26px;background:#C06040;border-radius:1px;margin-top:4px;display:flex;align-items:center;justify-content:center">
+              <div style="width:44px;height:5px;background:#FFF;border-radius:1px;opacity:.75"></div>
             </div>
           </div>
         </div>
         <div class="template-info">
           <h3>Bohème</h3>
           <p>Tons terreux, ambiance naturelle et poétique.</p>
-          <span class="template-soon">Bientôt disponible</span>
+          <div class="template-actions">
+            <a href="#contact" class="template-link">Choisir ce template →</a>
+            <a href="template-boheme.html" class="template-view" target="_blank" rel="noopener">Voir le template</a>
+          </div>
         </div>
       </div>
 
-      <!-- Moderne (bientôt) -->
+      <!-- Moderne -->
       <div class="template-card">
-        <div class="preview" style="background:#F2F2F0">
-          <div class="preview-bar" style="background:#E2E2DC;border-color:#D2D2CC">
+        <div class="preview" style="background:#F7F7F5">
+          <div class="preview-bar" style="background:#EFEFED;border-color:#D0D0C8">
             <div class="dot" style="background:#D0C8C0"></div><div class="dot" style="background:#D0CCC0"></div><div class="dot" style="background:#C0C0B8"></div>
             <div class="preview-url" style="background:#D2D2CC"></div>
           </div>
-          <div class="preview-blur" style="background:rgba(228,228,226,.8)">
-            <div class="coming-overlay">
-              <div class="title" style="color:#282824">Bientôt disponible</div>
-              <div class="sub" style="color:#585850">En préparation</div>
+          <div class="preview-content">
+            <div style="height:6px;width:60px;background:#1A1A18;opacity:.12"></div>
+            <div style="height:20px;width:160px;background:#1A1A18;opacity:.12"></div>
+            <div style="height:10px;width:120px;background:#1A1A18;border-radius:1px;opacity:.06"></div>
+            <div style="width:100%;height:4px"></div>
+            <div style="width:100%;height:100px;background:#EFEFED;border:1px solid #D0D0C8;display:flex;align-items:center;justify-content:center">
+              <span style="font-size:9px;color:#A0A098;letter-spacing:.12em">VOTRE PHOTO</span>
+            </div>
+            <div style="height:8px;width:140px;background:#1A1A18;opacity:.3"></div>
+            <div style="height:7px;width:100px;background:#1A1A18;border-radius:1px;opacity:.06"></div>
+            <div style="width:88px;height:26px;background:#1A1A18;margin-top:4px;display:flex;align-items:center;justify-content:center">
+              <div style="width:44px;height:5px;background:#FFF;opacity:.75"></div>
             </div>
           </div>
         </div>
         <div class="template-info">
           <h3>Moderne</h3>
           <p>Noir &amp; blanc, épuré et contemporain.</p>
-          <span class="template-soon">Bientôt disponible</span>
+          <div class="template-actions">
+            <a href="#contact" class="template-link">Choisir ce template →</a>
+            <a href="template-moderne.html" class="template-view" target="_blank" rel="noopener">Voir le template</a>
+          </div>
         </div>
       </div>
 
@@ -663,8 +694,8 @@
             <option value="" disabled selected>Choisir un template</option>
             <option value="Élégant">Élégant — Crème &amp; or</option>
             <option value="Pétale">Pétale — Rose poudré</option>
-            <option value="Bohème">Bohème — (bientôt dispo)</option>
-            <option value="Moderne">Moderne — (bientôt dispo)</option>
+            <option value="Bohème">Bohème — Tons terreux</option>
+            <option value="Moderne">Moderne — Noir &amp; blanc</option>
           </select>
         </div>
       </div>

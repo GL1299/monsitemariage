@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manon & Raphaël — 7 Juin 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+  <style>
+    /* ── DESIGN TOKENS ── */
+    :root {
+      --bg:         #FEF5F7;
+      --bg-white:   #FFFFFF;
+      --bg-rose:    #FFF0F3;
+      --bg-dark:    #5C2030;
+      --text:       #4A1828;
+      --text-mid:   #8A4060;
+      --text-light: #C0A0B0;
+      --accent:     #D4849A;
+      --accent-deep:#9B3A5C;
+      --accent-pale:#EFB8C8;
+      --border:     #F0D0D8;
+      --serif:      'Cormorant Garamond', Georgia, serif;
+      --sans:       'DM Sans', system-ui, sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--sans); color: var(--text); background: var(--bg); -webkit-font-smoothing: antialiased; }
+    input, textarea, select, button { font-family: inherit; }
+    ::placeholder { color: var(--text-light); opacity: 1; }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      height: 68px; display: flex; align-items: center; justify-content: center;
+      gap: 14px;
+      background: rgba(254,245,247,.97);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo { font-family: var(--serif); font-size: 20px; font-style: italic; color: var(--accent-deep); }
+    .nav-links-side { display: flex; gap: 28px; }
+    .nav-links-side a { font-size: 12px; font-weight: 400; color: var(--text-mid); text-decoration: none; transition: color .2s; }
+    .nav-links-side a:hover { color: var(--accent-deep); }
+    .nav-cta {
+      padding: 9px 22px; background: var(--accent); color: #fff !important;
+      border-radius: 50px; font-size: 11px; font-weight: 500; letter-spacing: .06em;
+      text-transform: uppercase; transition: background .2s !important;
+    }
+    .nav-cta:hover { background: #C06080 !important; }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh; display: flex; flex-direction: column; align-items: center;
+      justify-content: center; padding: 110px 48px 80px; text-align: center;
+      position: relative; overflow: hidden;
+    }
+    /* Background scattered petals */
+    .hero-petals {
+      position: absolute; inset: 0; pointer-events: none; overflow: hidden;
+    }
+    .hero-inner { position: relative; max-width: 680px; display: flex; flex-direction: column; align-items: center; gap: 12px; }
+    .hero-date   { font-size: 11px; font-weight: 400; letter-spacing: .16em; text-transform: uppercase; color: var(--accent); }
+    .hero-names  { font-family: var(--serif); font-size: clamp(52px,8vw,92px); font-style: italic; font-weight: 400; color: var(--accent-deep); line-height: 1.06; }
+    .hero-sub    { font-family: var(--serif); font-size: 19px; font-style: italic; font-weight: 300; color: var(--text-mid); }
+    .hero-divider { display: flex; align-items: center; gap: 12px; }
+    .hero-divider::before,
+    .hero-divider::after { content:''; display:block; height:1px; width:44px; background: linear-gradient(90deg, transparent, var(--accent)); }
+    .hero-divider::after { background: linear-gradient(-90deg, transparent, var(--accent)); }
+    .hero-venue  { font-size: 15px; font-weight: 400; color: var(--accent); letter-spacing: .04em; }
+    .hero-place  { font-size: 12px; font-weight: 300; color: var(--text-light); margin-top: 3px; }
+    .hero-rsvp-pill { background: var(--bg-rose); border: 1px solid var(--border); border-radius: 50px; padding: 9px 22px; display: flex; gap: 10px; align-items: center; font-size: 12px; color: var(--accent); }
+    .hero-ctas  { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; margin-top: 8px; }
+    .btn-primary { display: inline-block; padding: 14px 40px; background: var(--accent); color: #fff; font-size: 12px; font-weight: 500; letter-spacing: .09em; text-transform: uppercase; text-decoration: none; border-radius: 50px; transition: background .2s; }
+    .btn-primary:hover { background: #C06080; }
+    .btn-outline { display: inline-block; padding: 13px 40px; border: 1.5px solid var(--accent); color: var(--accent); font-size: 12px; font-weight: 500; letter-spacing: .09em; text-transform: uppercase; text-decoration: none; border-radius: 50px; transition: .2s; }
+    .btn-outline:hover { background: var(--accent); color: #fff; }
+
+    /* ── COUNTDOWN ── */
+    .countdown { display: flex; gap: 48px; justify-content: center; margin-top: 60px; flex-wrap: wrap; }
+    .count-item { text-align: center; }
+    .count-num  { font-family: var(--serif); font-size: 48px; font-weight: 400; color: var(--accent-deep); line-height: 1; }
+    .count-lbl  { font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: var(--text-light); margin-top: 6px; }
+    .count-sep  { width: 1px; background: var(--border); height: 44px; align-self: center; }
+
+    /* ── SECTION ── */
+    section { padding: 104px 48px; }
+    .section-inner { max-width: 1100px; margin: 0 auto; }
+    .section-head  { text-align: center; margin-bottom: 64px; }
+    .section-title { font-family: var(--serif); font-size: clamp(34px,5vw,54px); font-style: italic; font-weight: 400; color: var(--text); }
+    .section-desc  { font-size: 15px; font-weight: 300; color: var(--text-light); margin-top: 14px; max-width: 440px; margin-left: auto; margin-right: auto; line-height: 1.8; }
+
+    /* ── PROGRAMME ── */
+    #programme { background: var(--bg-white); }
+    .tl-cards { display: flex; flex-direction: column; gap: 0; max-width: 640px; margin: 0 auto; }
+    .tl-item  { display: flex; gap: 24px; align-items: flex-start; padding: 28px 0; border-bottom: 1px solid var(--border); }
+    .tl-time  { font-family: var(--serif); font-size: 26px; font-style: italic; color: var(--accent); width: 64px; flex-shrink: 0; padding-top: 2px; }
+    .tl-icon  { width: 36px; height: 36px; border-radius: 50%; background: var(--bg-rose); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .tl-body  {}
+    .tl-name  { font-family: var(--serif); font-size: 21px; font-weight: 500; color: var(--text); margin-bottom: 6px; }
+    .tl-desc  { font-size: 14px; font-weight: 300; color: var(--text-mid); line-height: 1.7; }
+
+    /* ── RSVP ── */
+    #rsvp { background: var(--bg); }
+    .rsvp-form { max-width: 620px; margin: 0 auto; display: flex; flex-direction: column; gap: 28px; }
+    .form-row  { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+    .form-field label { display: block; font-size: 10px; font-weight: 500; letter-spacing: .15em; text-transform: uppercase; color: var(--accent-deep); margin-bottom: 10px; }
+    .form-field input,
+    .form-field select,
+    .form-field textarea { width: 100%; border: none; border-bottom: 1.5px solid var(--border); padding: 10px 0; background: transparent; font-size: 15px; font-weight: 300; color: var(--text); outline: none; transition: border-color .2s; }
+    .form-field input:focus,
+    .form-field select:focus,
+    .form-field textarea:focus { border-bottom-color: var(--accent); }
+    .form-field textarea { resize: none; line-height: 1.7; }
+    .btn-submit { padding: 17px; background: var(--accent); color: #fff; font-size: 12px; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; border: none; cursor: pointer; border-radius: 50px; transition: background .2s; }
+    .btn-submit:hover { background: #C06080; }
+
+    /* ── ACCÈS ── */
+    #acces { background: var(--bg-rose); }
+    .acces-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; }
+    .acces-map  { height: 300px; background: linear-gradient(135deg, #F0D0D8 0%, #F8E8EE 100%); display: flex; align-items: center; justify-content: center; border-radius: 4px; }
+    .acces-map span { font-size: 11px; font-weight: 300; letter-spacing: .1em; text-transform: uppercase; color: var(--text-light); }
+    .acces-info h3 { font-family: var(--serif); font-size: 26px; font-style: italic; color: var(--text); margin-bottom: 14px; }
+    .acces-addr { font-size: 14px; font-weight: 300; color: var(--text-mid); line-height: 1.9; margin-bottom: 22px; }
+    .acces-list { display: flex; flex-direction: column; gap: 12px; }
+    .acces-item { font-size: 13px; font-weight: 300; color: var(--text-mid); line-height: 1.65; padding-left: 14px; border-left: 2px solid var(--accent-pale); }
+    .acces-link { color: var(--accent-deep); text-decoration: none; }
+
+    /* ── FOOTER ── */
+    footer { padding: 44px 48px; background: var(--bg-dark); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; }
+    .footer-logo { font-family: var(--serif); font-size: 20px; font-style: italic; color: #FEF5F7; }
+    .footer-sub  { font-size: 12px; font-weight: 300; color: rgba(212,132,154,.5); margin-top: 4px; }
+    .footer-links a { font-size: 13px; font-weight: 300; color: rgba(212,132,154,.5); text-decoration: none; margin-left: 24px; transition: color .2s; }
+    .footer-links a:hover { color: var(--accent-pale); }
+    .footer-copy { font-size: 12px; color: rgba(212,132,154,.35); }
+
+    @media (max-width: 768px) {
+      nav { padding: 0 16px; gap: 10px; }
+      .nav-links-side { display: none; }
+      section { padding: 68px 24px; }
+      .form-row { grid-template-columns: 1fr; }
+      .acces-grid { grid-template-columns: 1fr; }
+      footer { flex-direction: column; text-align: center; padding: 32px 24px; }
+      .footer-links a { margin: 0 12px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAVIGATION ── -->
+<nav>
+  <div class="nav-links-side">
+    <a href="#programme">Programme</a>
+    <a href="#acces">Accès</a>
+  </div>
+  <span class="nav-logo">Manon &amp; Raphaël</span>
+  <div class="nav-links-side">
+    <a href="#rsvp" class="nav-cta">RSVP</a>
+  </div>
+</nav>
+
+<!-- ── HERO ── -->
+<section id="hero">
+  <!-- Background petals -->
+  <div class="hero-petals">
+    <svg width="100%" height="100%" viewBox="0 0 800 900" preserveAspectRatio="xMidYMid slice" fill="none" style="opacity:.08">
+      <path d="M60,200 Q48,164 60,130 Q72,164 60,200" fill="#D4849A" transform="rotate(-30,60,200)"/>
+      <path d="M80,170 Q68,138 80,108 Q92,138 80,170" fill="#EFB8C8" transform="rotate(15,80,170)"/>
+      <path d="M720,180 Q708,148 720,118 Q732,148 720,180" fill="#EFB8C8" transform="rotate(35,720,180)"/>
+      <path d="M740,210 Q728,174 740,140 Q752,174 740,210" fill="#D4849A" transform="rotate(-10,740,210)"/>
+      <path d="M100,700 Q88,664 100,630 Q112,664 100,700" fill="#D4849A" transform="rotate(-20,100,700)"/>
+      <path d="M120,730 Q108,698 120,668 Q132,698 120,730" fill="#EFB8C8" transform="rotate(20,120,730)"/>
+      <path d="M680,680 Q668,648 680,618 Q692,648 680,680" fill="#D4849A" transform="rotate(40,680,680)"/>
+      <path d="M700,710 Q688,678 700,648 Q712,678 700,710" fill="#EFB8C8" transform="rotate(-5,700,710)"/>
+      <path d="M400,40 Q388,8 400,-22 Q412,8 400,40" fill="#EFB8C8"/>
+    </svg>
+  </div>
+
+  <div class="hero-inner">
+    <!-- Petal fan ornament -->
+    <svg width="88" height="56" viewBox="0 0 88 56" fill="none" style="margin-bottom:4px">
+      <path d="M44,54 Q30,36 22,14 Q38,34 44,54" fill="#EFB8C8" opacity=".95"/>
+      <path d="M44,54 Q32,34 30,10 Q42,32 44,54" fill="#EFB8C8" opacity=".88"/>
+      <path d="M44,54 Q40,28 44,4 Q48,28 44,54" fill="#EFB8C8" opacity=".82"/>
+      <path d="M44,54 Q56,34 58,10 Q46,32 44,54" fill="#D4849A" opacity=".88"/>
+      <path d="M44,54 Q58,36 66,14 Q50,34 44,54" fill="#D4849A" opacity=".95"/>
+      <circle cx="44" cy="51" r="6" fill="#C07890"/>
+    </svg>
+
+    <span class="hero-date">7 juin 2026</span>
+    <h1 class="hero-names">Manon<br>&amp; Raphaël</h1>
+    <p class="hero-sub">se disent oui</p>
+
+    <div class="hero-divider">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+        <circle cx="7" cy="3.2" r="2.4" fill="#EFB8C8"/>
+        <circle cx="10.4" cy="5.7" r="2.4" fill="#EFB8C8"/>
+        <circle cx="9" cy="9.8" r="2.4" fill="#D4849A"/>
+        <circle cx="5" cy="9.8" r="2.4" fill="#D4849A"/>
+        <circle cx="3.6" cy="5.7" r="2.4" fill="#EFB8C8"/>
+        <circle cx="7" cy="7" r="2.6" fill="#C07890"/>
+      </svg>
+    </div>
+
+    <p class="hero-venue">Villa des Roses</p>
+    <p class="hero-place">Bormes-les-Mimosas · Côte d'Azur</p>
+
+    <div class="hero-rsvp-pill">
+      <span>…</span>
+      <span>47 présences confirmées sur 92 invités</span>
+    </div>
+
+    <div class="hero-ctas">
+      <a href="#rsvp" class="btn-primary">Confirmer ma présence</a>
+      <a href="#programme" class="btn-outline">Programme</a>
+    </div>
+
+    <p style="font-family:var(--serif);font-size:13px;font-style:italic;color:var(--text-light);margin-top:4px">Répondre avant le 1er mai 2026</p>
+  </div>
+
+  <div class="countdown">
+    <div class="count-item"><div class="count-num" id="cd-days">—</div><div class="count-lbl">Jours</div></div>
+    <div class="count-sep"></div>
+    <div class="count-item"><div class="count-num" id="cd-hours">—</div><div class="count-lbl">Heures</div></div>
+    <div class="count-sep"></div>
+    <div class="count-item"><div class="count-num" id="cd-min">—</div><div class="count-lbl">Minutes</div></div>
+  </div>
+</section>
+
+<!-- ── PROGRAMME ── -->
+<section id="programme">
+  <div class="section-inner">
+    <div class="section-head">
+      <h2 class="section-title">Le jour le plus beau</h2>
+      <p class="section-desc">Un dimanche de juin sous le soleil de la Côte d'Azur, entre roses et mer.</p>
+    </div>
+    <div class="tl-cards">
+      <div class="tl-item">
+        <div class="tl-time">15h</div>
+        <div class="tl-body"><div class="tl-name">Cérémonie</div><div class="tl-desc">Cérémonie laïque dans le jardin de roses de la Villa, face à la mer.</div></div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">16h30</div>
+        <div class="tl-body"><div class="tl-name">Vin d'honneur</div><div class="tl-desc">Champagne rosé, pétales de roses et mignardises provençales sur la grande terrasse.</div></div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">19h30</div>
+        <div class="tl-body"><div class="tl-name">Dîner</div><div class="tl-desc">Dîner en terrasse panoramique face à la Méditerranée. Cuisine du chef.</div></div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">23h30</div>
+        <div class="tl-body"><div class="tl-name">Soirée &amp; feu d'artifice</div><div class="tl-desc">Soirée dansante suivie d'un feu d'artifice rose sur la baie de Bormes.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── RSVP ── -->
+<section id="rsvp">
+  <div class="section-inner">
+    <div class="section-head">
+      <h2 class="section-title">Confirmer ma présence</h2>
+      <p class="section-desc">Répondre avant le <strong style="color:var(--accent-deep)">1er mai 2026</strong> pour nous aider à vous préparer le meilleur accueil.</p>
+    </div>
+    <form class="rsvp-form" id="rsvp-form">
+      <div class="form-row">
+        <div class="form-field"><label>Prénom &amp; nom</label><input type="text" placeholder="Manon Lefebvre" required></div>
+        <div class="form-field"><label>Email</label><input type="email" placeholder="manon@email.com" required></div>
+      </div>
+      <div class="form-row">
+        <div class="form-field"><label>Présence</label><select><option>Oui, avec grand bonheur !</option><option>Je ne pourrai pas venir</option></select></div>
+        <div class="form-field"><label>Nombre de personnes</label><select><option>1 personne</option><option>2 personnes</option><option>3 personnes</option><option>4+</option></select></div>
+      </div>
+      <div class="form-field"><label>Régime / allergies</label><textarea placeholder="Végétarien, sans lactose…" rows="3"></textarea></div>
+      <div class="form-field"><label>Un mot doux …</label><textarea placeholder="Pour Manon & Raphaël…" rows="3"></textarea></div>
+      <button type="submit" class="btn-submit">Envoyer ma réponse 🌸</button>
+    </form>
+  </div>
+</section>
+
+<!-- ── ACCÈS ── -->
+<section id="acces">
+  <div class="section-inner">
+    <div class="section-head">
+      <h2 class="section-title">Nous rejoindre</h2>
+    </div>
+    <div class="acces-grid">
+      <div class="acces-map"><span>Carte interactive</span></div>
+      <div class="acces-info">
+        <h3>Villa des Roses</h3>
+        <p class="acces-addr">Chemin des Roses<br>83230 Bormes-les-Mimosas<br>Var · Côte d'Azur</p>
+        <div class="acces-list">
+          <div class="acces-item"><strong>GPS :</strong> 43.148, 6.343 — <a href="#" class="acces-link">Google Maps</a></div>
+          <div class="acces-item"><strong>Train :</strong> Gare de Hyères (20min), navette assurée depuis la gare</div>
+          <div class="acces-item"><strong>Avion :</strong> Aéroport Toulon-Hyères (30min)</div>
+          <div class="acces-item"><strong>Hébergement :</strong> Hostellerie du Vieux Moulin, 5min — <a href="#" class="acces-link">Chambres réservées</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div><div class="footer-logo">Manon &amp; Raphaël</div><p class="footer-sub">7 juin 2026 · Côte d'Azur</p></div>
+  <div class="footer-links"><a href="#programme">Programme</a><a href="#rsvp">RSVP</a><a href="#acces">Accès</a></div>
+  <p class="footer-copy">Site créé avec Mon Site Mariage</p>
+</footer>
+
+<script>
+  (function() {
+    const target = new Date('2026-06-07T15:00:00');
+    function update() {
+      const diff = target - new Date();
+      if (diff <= 0) return;
+      document.getElementById('cd-days').textContent  = Math.floor(diff / 86400000);
+      document.getElementById('cd-hours').textContent = String(Math.floor((diff % 86400000) / 3600000)).padStart(2,'0');
+      document.getElementById('cd-min').textContent   = String(Math.floor((diff % 3600000) / 60000)).padStart(2,'0');
+    }
+    update(); setInterval(update, 30000);
+  })();
+  document.getElementById('rsvp-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    this.innerHTML = '<div style="text-align:center;padding:56px 0"><p style="font-family:var(--serif);font-size:52px;font-style:italic;color:var(--accent-deep)">Merci !</p><p style="font-size:16px;font-weight:300;color:var(--text-mid);margin-top:12px">Votre réponse a bien été enregistrée 🌸</p></div>';
+  });
+</script>
+</body>
+</html>

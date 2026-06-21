@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sophie & Thomas — 12 Septembre 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+  <style>
+    /* ── DESIGN TOKENS ── */
+    :root {
+      --bg:           #FAF8F3;
+      --bg-white:     #FFFFFF;
+      --bg-dark:      #2C1F14;
+      --text:         #2C1F14;
+      --text-mid:     #6B4F2E;
+      --text-light:   #A08060;
+      --accent:       #C4954A;
+      --accent-light: #E0C68A;
+      --border:       #E8D5B0;
+      --serif:        'Cormorant Garamond', Georgia, serif;
+      --sans:         'DM Sans', system-ui, sans-serif;
+    }
+
+    /* ── RESET ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--sans); color: var(--text); background: var(--bg); -webkit-font-smoothing: antialiased; }
+    input, textarea, select, button { font-family: inherit; }
+    ::placeholder { color: var(--text-light); opacity: 1; }
+
+    /* ── TYPOGRAPHY ── */
+    .serif        { font-family: var(--serif); }
+    .label        { font-size: 11px; font-weight: 500; letter-spacing: .18em; text-transform: uppercase; color: var(--accent); }
+    .section-tag  { display: flex; align-items: center; gap: 14px; justify-content: center; margin-bottom: 14px; }
+    .section-tag::before,
+    .section-tag::after { content: ''; display: block; height: 1px; width: 28px; background: var(--accent); }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      height: 72px; display: flex; align-items: center; justify-content: space-between;
+      padding: 0 56px;
+      background: rgba(250,248,243,.96);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo  { font-family: var(--serif); font-size: 22px; font-weight: 500; color: var(--text); text-decoration: none; letter-spacing: .05em; }
+    .nav-links { display: flex; gap: 36px; align-items: center; }
+    .nav-links a { font-size: 13px; font-weight: 400; color: var(--text-mid); text-decoration: none; transition: color .2s; }
+    .nav-links a:hover { color: var(--accent); }
+    .nav-cta { padding: 10px 24px; background: var(--accent); color: #fff !important; font-size: 12px; font-weight: 500; letter-spacing: .07em; text-transform: uppercase; }
+    .nav-cta:hover { background: #A87B38 !important; }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh; display: flex; flex-direction: column; align-items: center;
+      justify-content: center; padding: 120px 48px 80px; text-align: center;
+      background: var(--bg); position: relative; overflow: hidden;
+    }
+    .hero-pattern {
+      position: absolute; inset: 0; opacity: .035; pointer-events: none;
+      background-image: repeating-linear-gradient(0deg, transparent, transparent 47px, var(--border) 47px, var(--border) 48px),
+                        repeating-linear-gradient(90deg, transparent, transparent 47px, var(--border) 47px, var(--border) 48px);
+    }
+    .hero-inner { position: relative; max-width: 720px; }
+    .hero-date  { font-size: 11px; font-weight: 500; letter-spacing: .2em; text-transform: uppercase; color: var(--accent); }
+    .hero-names { font-family: var(--serif); font-size: clamp(56px,8vw,96px); font-weight: 400; color: var(--text); line-height: 1.05; margin: 24px 0 16px; }
+    .hero-sub   { font-family: var(--serif); font-size: 17px; font-style: italic; font-weight: 300; color: var(--text-mid); margin-bottom: 20px; }
+    .ornament   { display: flex; align-items: center; gap: 10px; justify-content: center; margin: 18px 0; }
+    .ornament::before, .ornament::after { content:''; display:block; height:1px; width:28px; background: var(--accent); opacity:.6; }
+    .ornament-diamond { width:7px; height:7px; border:1.5px solid var(--accent); transform:rotate(45deg); opacity:.8; }
+    .hero-venue { font-size: 15px; font-weight: 400; color: var(--accent); letter-spacing: .05em; }
+    .hero-place { font-size: 12px; font-weight: 300; color: var(--text-light); margin-top: 5px; }
+    .hero-ctas  { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-top: 36px; }
+    .btn-primary   { display: inline-block; padding: 15px 40px; background: var(--accent); color: #fff; font-size: 12px; font-weight: 500; letter-spacing: .09em; text-transform: uppercase; text-decoration: none; transition: background .2s; }
+    .btn-primary:hover { background: #A87B38; }
+    .btn-outline   { display: inline-block; padding: 15px 40px; border: 1.5px solid var(--accent); color: var(--accent); font-size: 12px; font-weight: 500; letter-spacing: .09em; text-transform: uppercase; text-decoration: none; transition: .2s; }
+    .btn-outline:hover { background: var(--accent); color: #fff; }
+
+    /* ── COUNTDOWN ── */
+    .countdown { display: flex; gap: 48px; justify-content: center; margin-top: 64px; flex-wrap: wrap; }
+    .count-item { text-align: center; }
+    .count-num  { font-family: var(--serif); font-size: 52px; font-weight: 400; color: var(--accent); line-height: 1; }
+    .count-lbl  { font-size: 10px; font-weight: 400; letter-spacing: .12em; text-transform: uppercase; color: var(--text-light); margin-top: 6px; }
+    .count-sep  { width: 1px; background: var(--border); align-self: center; height: 48px; opacity: .6; }
+
+    /* ── SECTION SHARED ── */
+    section { padding: 112px 56px; }
+    .section-inner { max-width: 1120px; margin: 0 auto; }
+    .section-head  { text-align: center; margin-bottom: 72px; }
+    .section-title { font-family: var(--serif); font-size: clamp(36px,5vw,56px); font-weight: 400; color: var(--text); }
+    .section-desc  { font-size: 16px; font-weight: 300; color: var(--text-light); margin-top: 14px; max-width: 440px; margin-left: auto; margin-right: auto; line-height: 1.8; }
+
+    /* ── PROGRAMME ── */
+    #programme { background: var(--bg-white); }
+    .timeline   { max-width: 640px; margin: 0 auto; display: flex; flex-direction: column; gap: 0; }
+    .tl-item {
+      display: grid; grid-template-columns: 80px 1px 1fr; gap: 0 24px;
+      padding: 28px 0;
+    }
+    .tl-item + .tl-item { border-top: 1px solid var(--border); }
+    .tl-time  { font-family: var(--serif); font-size: 22px; font-weight: 400; color: var(--accent); text-align: right; padding-top: 2px; }
+    .tl-line  { background: var(--border); position: relative; }
+    .tl-line::before { content: ''; position: absolute; top: 6px; left: 50%; transform: translateX(-50%); width: 7px; height: 7px; border: 1.5px solid var(--accent); transform: translateX(-50%) rotate(45deg); background: var(--bg-white); }
+    .tl-body  { padding-left: 0; }
+    .tl-name  { font-family: var(--serif); font-size: 22px; font-weight: 500; color: var(--text); margin-bottom: 6px; }
+    .tl-desc  { font-size: 14px; font-weight: 300; color: var(--text-light); line-height: 1.7; }
+
+    /* ── RSVP ── */
+    #rsvp { background: var(--bg); }
+    .rsvp-form { max-width: 640px; margin: 0 auto; display: flex; flex-direction: column; gap: 32px; }
+    .form-row   { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+    .form-field label { display: block; font-size: 10px; font-weight: 500; letter-spacing: .15em; text-transform: uppercase; color: var(--accent); margin-bottom: 10px; }
+    .form-field input,
+    .form-field select,
+    .form-field textarea {
+      width: 100%; border: none; border-bottom: 1.5px solid var(--accent-light);
+      padding: 10px 0; background: transparent; font-size: 16px; font-weight: 300;
+      color: var(--text); outline: none; transition: border-color .2s;
+    }
+    .form-field input:focus,
+    .form-field select:focus,
+    .form-field textarea:focus { border-bottom-color: var(--accent); }
+    .form-field textarea { resize: none; line-height: 1.7; }
+    .btn-submit { width: 100%; padding: 18px; background: var(--accent); color: #fff; font-size: 12px; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; border: none; cursor: pointer; transition: background .2s; }
+    .btn-submit:hover { background: #A87B38; }
+
+    /* ── ACCÈS ── */
+    #acces { background: var(--bg-white); }
+    .acces-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; }
+    .acces-map  { height: 320px; background: linear-gradient(135deg, var(--border) 0%, #E0C898 100%); display: flex; align-items: center; justify-content: center; }
+    .acces-map span { font-size: 12px; font-weight: 400; letter-spacing: .1em; text-transform: uppercase; color: var(--text-light); }
+    .acces-info h3 { font-family: var(--serif); font-size: 28px; font-weight: 500; color: var(--text); margin-bottom: 20px; }
+    .acces-addr { font-size: 15px; font-weight: 300; color: var(--text-mid); line-height: 1.8; margin-bottom: 28px; }
+    .acces-detail { display: flex; flex-direction: column; gap: 16px; }
+    .acces-row  { display: flex; gap: 14px; align-items: flex-start; }
+    .acces-ico  { width: 32px; height: 32px; border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .acces-txt  { font-size: 13px; font-weight: 300; color: var(--text-mid); line-height: 1.65; }
+    .acces-link { color: var(--accent); text-decoration: none; font-weight: 500; }
+
+    /* ── FOOTER ── */
+    footer { padding: 48px 56px; background: var(--bg-dark); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 24px; }
+    .footer-logo { font-family: var(--serif); font-size: 20px; font-weight: 500; color: #FAF8F3; letter-spacing: .05em; }
+    .footer-sub  { font-size: 12px; font-weight: 300; color: #4A3020; margin-top: 4px; }
+    .footer-links { display: flex; gap: 28px; flex-wrap: wrap; }
+    .footer-links a { font-size: 13px; font-weight: 300; color: #4A3020; text-decoration: none; transition: color .2s; }
+    .footer-links a:hover { color: var(--accent); }
+    .footer-copy { font-size: 12px; font-weight: 300; color: #4A3020; }
+
+    @media (max-width: 768px) {
+      nav { padding: 0 20px; }
+      .nav-links { display: none; }
+      section { padding: 72px 24px; }
+      .form-row { grid-template-columns: 1fr; }
+      .acces-grid { grid-template-columns: 1fr; }
+      footer { padding: 36px 24px; flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAVIGATION ── -->
+<nav>
+  <a href="#" class="nav-logo">S — T</a>
+  <div class="nav-links">
+    <a href="#programme">Programme</a>
+    <a href="#acces">Accès</a>
+    <a href="#rsvp" class="nav-cta">Confirmer ma présence</a>
+  </div>
+</nav>
+
+<!-- ── HERO ── -->
+<section id="hero">
+  <div class="hero-pattern"></div>
+  <div class="hero-inner">
+    <div class="section-tag"><span class="label">12 septembre 2026</span></div>
+    <h1 class="hero-names serif">Sophie<br>&amp; Thomas</h1>
+    <p class="hero-sub">se marient à Maincy, Seine-et-Marne</p>
+    <div class="ornament"><div class="ornament-diamond"></div></div>
+    <p class="hero-venue">Château de la Marquise</p>
+    <p class="hero-place">77950 Maincy · Île-de-France</p>
+    <div class="hero-ctas">
+      <a href="#rsvp" class="btn-primary">Confirmer ma présence</a>
+      <a href="#programme" class="btn-outline">Voir le programme</a>
+    </div>
+  </div>
+  <div class="countdown">
+    <div class="count-item"><div class="count-num" id="cd-days">—</div><div class="count-lbl">Jours</div></div>
+    <div class="count-sep"></div>
+    <div class="count-item"><div class="count-num" id="cd-hours">—</div><div class="count-lbl">Heures</div></div>
+    <div class="count-sep"></div>
+    <div class="count-item"><div class="count-num" id="cd-min">—</div><div class="count-lbl">Minutes</div></div>
+  </div>
+</section>
+
+<!-- ── PROGRAMME ── -->
+<section id="programme">
+  <div class="section-inner">
+    <div class="section-head">
+      <div class="section-tag"><span class="label">La journée</span></div>
+      <h2 class="section-title serif">Programme du 12 septembre</h2>
+      <p class="section-desc">Toutes les informations pour vivre notre grand jour avec nous, de la cérémonie à la soirée.</p>
+    </div>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-time">14h30</div><div class="tl-line"></div>
+        <div class="tl-body"><div class="tl-name serif">Accueil des invités</div><div class="tl-desc">Arrivée au Château de la Marquise. Accueil par le personnel et installation dans le parc.</div></div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">15h00</div><div class="tl-line"></div>
+        <div class="tl-body"><div class="tl-name serif">Cérémonie laïque</div><div class="tl-desc">Cérémonie dans le parc du château, sous les grands chênes centenaires.</div></div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">16h30</div><div class="tl-line"></div>
+        <div class="tl-body"><div class="tl-name serif">Vin d'honneur</div><div class="tl-desc">Cocktail sur la grande terrasse, musique live et petites bouchées.</div></div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">20h00</div><div class="tl-line"></div>
+        <div class="tl-body"><div class="tl-name serif">Dîner de gala</div><div class="tl-desc">Dîner dans la grande salle du château, menu gastronomique en 6 services.</div></div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">00h00</div><div class="tl-line"></div>
+        <div class="tl-body"><div class="tl-name serif">Ouverture du bal</div><div class="tl-desc">Sophie & Thomas ouvrent le bal. DJ set jusqu'à l'aube.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── RSVP ── -->
+<section id="rsvp">
+  <div class="section-inner">
+    <div class="section-head">
+      <div class="section-tag"><span class="label">Répondre</span></div>
+      <h2 class="section-title serif">Confirmer ma présence</h2>
+      <p class="section-desc">Merci de nous répondre avant le <strong>1er août 2026</strong>. Votre réponse nous aide à tout organiser.</p>
+    </div>
+    <form class="rsvp-form" id="rsvp-form">
+      <div class="form-row">
+        <div class="form-field"><label>Vos prénoms &amp; noms</label><input type="text" name="nom" placeholder="Sophie Dupont" required></div>
+        <div class="form-field"><label>Email</label><input type="email" name="email" placeholder="sophie@email.com" required></div>
+      </div>
+      <div class="form-row">
+        <div class="form-field">
+          <label>Présence</label>
+          <select name="presence">
+            <option value="">Je serai présent(e)…</option>
+            <option value="oui-2">Oui, avec plaisir !</option>
+            <option value="non">Non, je ne pourrai pas venir</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <label>Nombre de personnes</label>
+          <select name="nb">
+            <option value="1">1 personne</option>
+            <option value="2">2 personnes</option>
+            <option value="3">3 personnes</option>
+            <option value="4+">4 personnes et +</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-field"><label>Régime alimentaire <span style="font-size:12px;color:var(--text-light);text-transform:none;letter-spacing:0;font-weight:300;">(optionnel)</span></label><textarea name="regime" placeholder="Végétarien, allergie aux fruits à coque…" rows="3"></textarea></div>
+      <div class="form-field"><label>Message <span style="font-size:12px;color:var(--text-light);text-transform:none;letter-spacing:0;font-weight:300;">(optionnel)</span></label><textarea name="message" placeholder="Un petit mot pour les mariés…" rows="3"></textarea></div>
+      <button type="submit" class="btn-submit">Envoyer ma réponse</button>
+    </form>
+  </div>
+</section>
+
+<!-- ── ACCÈS ── -->
+<section id="acces">
+  <div class="section-inner">
+    <div class="section-head">
+      <div class="section-tag"><span class="label">Venir nous rejoindre</span></div>
+      <h2 class="section-title serif">Accès &amp; hébergement</h2>
+    </div>
+    <div class="acces-grid">
+      <div class="acces-map"><span>Carte interactive</span></div>
+      <div class="acces-info">
+        <h3 class="serif">Château de la Marquise</h3>
+        <p class="acces-addr">2 Route du Château<br>77950 Maincy<br>Seine-et-Marne, Île-de-France</p>
+        <div class="acces-detail">
+          <div class="acces-row">
+            <div class="acces-ico"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1a4 4 0 0 1 4 4c0 3-4 8-4 8S3 8 3 5a4 4 0 0 1 4-4z" stroke="#C4954A" stroke-width="1.2"/><circle cx="7" cy="5" r="1.5" stroke="#C4954A" stroke-width="1.2"/></svg></div>
+            <div class="acces-txt"><strong>GPS :</strong> 48.546, 2.742 — <a href="https://maps.google.com" class="acces-link" target="_blank">Ouvrir dans Google Maps</a></div>
+          </div>
+          <div class="acces-row">
+            <div class="acces-ico"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="1" y="4" width="12" height="8" rx="1.5" stroke="#C4954A" stroke-width="1.2"/><path d="M1 7h12" stroke="#C4954A" stroke-width="1.2"/><path d="M4 4V2.5a3 3 0 0 1 6 0V4" stroke="#C4954A" stroke-width="1.2"/></svg></div>
+            <div class="acces-txt"><strong>Train :</strong> RER D — Melun (45min depuis Paris) puis taxi (10min)</div>
+          </div>
+          <div class="acces-row">
+            <div class="acces-ico"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="2" y="5" width="10" height="6" rx="1" stroke="#C4954A" stroke-width="1.2"/><path d="M4 5V4a3 3 0 0 1 6 0v1" stroke="#C4954A" stroke-width="1.2"/><circle cx="4.5" cy="11" r="1" stroke="#C4954A" stroke-width="1.2"/><circle cx="9.5" cy="11" r="1" stroke="#C4954A" stroke-width="1.2"/></svg></div>
+            <div class="acces-txt"><strong>Voiture :</strong> A6 sortie Melun-Sénart, 10min. Parking sur place (200 places).</div>
+          </div>
+          <div class="acces-row">
+            <div class="acces-ico"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1a6 6 0 1 0 0 12A6 6 0 0 0 7 1z" stroke="#C4954A" stroke-width="1.2"/><path d="M7 4v3l2 2" stroke="#C4954A" stroke-width="1.2" stroke-linecap="round"/></svg></div>
+            <div class="acces-txt"><strong>Hôtel conseillé :</strong> Hôtel La Ferme des Templiers, Melun — à 12min du château. <a href="#" class="acces-link">Bloc de chambres réservé</a>.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div><div class="footer-logo">Sophie &amp; Thomas</div><p class="footer-sub">12 septembre 2026 · Maincy</p></div>
+  <div class="footer-links">
+    <a href="#programme">Programme</a>
+    <a href="#rsvp">RSVP</a>
+    <a href="#acces">Accès</a>
+  </div>
+  <p class="footer-copy">Site créé avec Mon Site Mariage</p>
+</footer>
+
+<script>
+  // Countdown
+  (function() {
+    const target = new Date('2026-09-12T15:00:00');
+    function update() {
+      const now = new Date();
+      const diff = target - now;
+      if (diff <= 0) return;
+      const days  = Math.floor(diff / 86400000);
+      const hours = Math.floor((diff % 86400000) / 3600000);
+      const mins  = Math.floor((diff % 3600000) / 60000);
+      document.getElementById('cd-days').textContent  = days;
+      document.getElementById('cd-hours').textContent = String(hours).padStart(2,'0');
+      document.getElementById('cd-min').textContent   = String(mins).padStart(2,'0');
+    }
+    update();
+    setInterval(update, 30000);
+  })();
+
+  // Form submit
+  document.getElementById('rsvp-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    this.innerHTML = '<div style="text-align:center;padding:64px 0"><p style="font-family:var(--serif);font-size:48px;color:var(--accent)">…</p><h3 style="font-family:var(--serif);font-size:28px;font-weight:400;color:var(--text);margin:12px 0">Merci !</h3><p style="font-weight:300;color:var(--text-light)">Votre réponse a bien été enregistrée.</p></div>';
+  });
+</script>
+</body>
+</html>
