@@ -235,7 +235,12 @@
       <h2 class="section-title serif">Confirmer ma présence</h2>
       <p class="section-desc">Merci de nous répondre avant le <strong>1er août 2026</strong>. Votre réponse nous aide à tout organiser.</p>
     </div>
+    <!-- ⚠ Remplacer YOUR_WEB3FORMS_ACCESS_KEY par la clé Web3Forms du couple (web3forms.com) avant livraison -->
     <form class="rsvp-form" id="rsvp-form">
+      <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_ACCESS_KEY"/>
+      <input type="hidden" name="subject" value="Nouvelle confirmation RSVP — Sophie &amp; Thomas"/>
+      <input type="hidden" name="from_name" value="Site mariage Sophie &amp; Thomas"/>
+      <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off"/>
       <div class="form-row">
         <div class="form-field"><label>Vos prénoms &amp; noms</label><input type="text" name="nom" placeholder="Sophie Dupont" required></div>
         <div class="form-field"><label>Email</label><input type="email" name="email" placeholder="sophie@email.com" required></div>
@@ -332,9 +337,28 @@
   })();
 
   // Form submit
-  document.getElementById('rsvp-form').addEventListener('submit', function(e) {
+  document.getElementById('rsvp-form').addEventListener('submit', async function(e) {
     e.preventDefault();
-    this.innerHTML = '<div style="text-align:center;padding:64px 0"><p style="font-family:var(--serif);font-size:48px;color:var(--accent)">…</p><h3 style="font-family:var(--serif);font-size:28px;font-weight:400;color:var(--text);margin:12px 0">Merci !</h3><p style="font-weight:300;color:var(--text-light)">Votre réponse a bien été enregistrée.</p></div>';
+    const form = this;
+    const btn = form.querySelector('.btn-submit');
+    btn.disabled = true;
+    try {
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify(Object.fromEntries(new FormData(form)))
+      });
+      const result = await res.json();
+      if (result.success) {
+        form.innerHTML = '<div style="text-align:center;padding:64px 0"><p style="font-family:var(--serif);font-size:48px;color:var(--accent)">✓</p><h3 style="font-family:var(--serif);font-size:28px;font-weight:400;color:var(--text);margin:12px 0">Merci !</h3><p style="font-weight:300;color:var(--text-light)">Votre réponse a bien été enregistrée.</p></div>';
+      } else {
+        alert('Une erreur est survenue, merci de réessayer.');
+        btn.disabled = false;
+      }
+    } catch (err) {
+      alert('Une erreur est survenue, merci de réessayer.');
+      btn.disabled = false;
+    }
   });
 </script>
 </body>
