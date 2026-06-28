@@ -1,10 +1,90 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-MR3R9C65');</script>
+  <!-- End Google Tag Manager -->
+
+  <!-- Google tag (Google Analytics GA4) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-2L26BJ8RF4"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-2L26BJ8RF4');
+  </script>
+  <!-- End Google Analytics -->
+
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Mon Site Mariage — Sites de mariage sur mesure</title>
+  <title>Mon Site Mariage — Sites de mariage sur mesure, livrés en 48h</title>
+  <meta name="description" content="Créez le site de votre mariage en 48h : invitation en ligne, confirmation des invités (RSVP), programme, QR code pour vos faire-part et liste de mariage. 4 templates, à partir de 349€."/>
+  <link rel="canonical" href="https://monsitemariage.vercel.app/"/>
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website"/>
+  <meta property="og:site_name" content="Mon Site Mariage"/>
+  <meta property="og:locale" content="fr_FR"/>
+  <meta property="og:url" content="https://monsitemariage.vercel.app/"/>
+  <meta property="og:title" content="Mon Site Mariage — Sites de mariage sur mesure, livrés en 48h"/>
+  <meta property="og:description" content="Invitation en ligne, RSVP, programme et QR code pour vos faire-part. 4 templates, à partir de 349€, livrés en 48h."/>
+  <meta property="og:image" content="https://monsitemariage.vercel.app/assets/img/og-image.jpg"/>
+  <meta property="og:image:width" content="1200"/>
+  <meta property="og:image:height" content="630"/>
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:title" content="Mon Site Mariage — Sites de mariage sur mesure, livrés en 48h"/>
+  <meta name="twitter:description" content="Invitation en ligne, RSVP, programme et QR code pour vos faire-part. 4 templates, à partir de 349€, livrés en 48h."/>
+  <meta name="twitter:image" content="https://monsitemariage.vercel.app/assets/img/og-image.jpg"/>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/assets/img/favicon.svg"/>
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon-32.png"/>
+  <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png"/>
+
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Mon Site Mariage",
+    "legalName": "GL C",
+    "url": "https://monsitemariage.vercel.app/",
+    "logo": "https://monsitemariage.vercel.app/assets/img/apple-touch-icon.png",
+    "email": "monsitemariage@gmail.com",
+    "telephone": "+33786932696",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "5 rue Francoeur",
+      "postalCode": "75018",
+      "addressLocality": "Paris",
+      "addressCountry": "FR"
+    },
+    "makesOffer": [
+      {
+        "@type": "Offer",
+        "name": "Forfait Complet",
+        "price": "349",
+        "priceCurrency": "EUR",
+        "url": "https://monsitemariage.vercel.app/#pricing"
+      },
+      {
+        "@type": "Offer",
+        "name": "Forfait Premium",
+        "price": "449",
+        "priceCurrency": "EUR",
+        "url": "https://monsitemariage.vercel.app/#pricing"
+      }
+    ]
+  }
+  </script>
+
   <style>
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
     :root{
@@ -201,6 +281,10 @@
   </style>
 </head>
 <body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MR3R9C65"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
 
 <!-- NAV -->
 <nav id="nav">
@@ -209,6 +293,7 @@
     <a href="#how">Comment ça marche</a>
     <a href="#features">Fonctionnalités</a>
     <a href="#pricing">Tarifs</a>
+    <a href="blog.html">Blog</a>
     <a href="#contact" class="btn-gold">Commencer</a>
   </div>
 </nav>
@@ -720,6 +805,7 @@
     <a href="#features">Fonctionnalités</a>
     <a href="#pricing">Tarifs</a>
     <a href="#contact">Contact</a>
+    <a href="blog.html">Blog</a>
     <a href="mentions-legales.html">Mentions légales</a>
     <a href="cgv.html">CGV</a>
     <a href="politique-confidentialite.html">Confidentialité</a>
@@ -816,6 +902,80 @@
       submitBtn.disabled = false;
     }
   });
+</script>
+
+<!-- Tracking générique des clics CTA pour Google Tag Manager -->
+<script>
+  window.dataLayer = window.dataLayer || [];
+  document.addEventListener('click', function(e) {
+    const el = e.target.closest('a, button');
+    if (!el) return;
+    window.dataLayer.push({
+      event: 'cta_click',
+      cta_text: el.textContent.trim().replace(/\s+/g, ' '),
+      cta_id: el.id || null,
+      cta_class: el.className || null,
+      cta_href: el.getAttribute('href') || null,
+      cta_section: (el.closest('section') || {}).id || null
+    });
+  });
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Combien de temps faut-il pour créer mon site ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Votre site est en ligne en 48h après réception de vos informations et contenus. Pour les formules incluant une galerie photos, comptez 2 à 5 jours supplémentaires selon le nombre de photos."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Puis-je modifier le contenu après livraison ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Oui. Des ajustements de textes et de dates sont inclus selon votre forfait (4 ou 10 modifications). Des changements plus importants peuvent être réalisés sur devis."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Comment fonctionne le QR code pour les faire-part ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Nous générons un QR code unique lié à votre site, optimisé pour l'impression (300 dpi). Il suffit de l'intégrer à vos faire-part — vos invités n'ont qu'à le scanner pour accéder à toutes les informations en temps réel."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Comment fonctionne l'album photos post-mariage ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Après votre mariage, nous mettons en ligne vos photos directement sur votre site. Vos invités peuvent les visualiser et les télécharger facilement depuis n'importe quel appareil, sans créer de compte. Cette fonctionnalité est incluse dans le plan Premium et disponible en option pour les autres plans."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Le site fonctionne-t-il bien sur smartphone ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Absolument. Tous nos templates sont conçus mobile-first. Vos invités peuvent confirmer leur présence, consulter le programme et accéder à la liste de mariage depuis leur smartphone, sans aucune friction."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Puis-je voir un exemple de site avant de commander ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Bien sûr ! Contactez-nous et nous vous envoyons un lien vers un site de démonstration complet dans le template de votre choix, avec toutes les fonctionnalités actives."
+      }
+    }
+  ]
+}
 </script>
 </body>
 </html>
