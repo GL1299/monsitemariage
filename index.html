@@ -162,6 +162,9 @@
     .feature-card .icon{margin-bottom:20px}
     .feature-card h3{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:500;color:var(--dark);margin-bottom:10px}
     .feature-card p{font-size:14px;font-weight:300;color:var(--brown-light);line-height:1.7}
+    .feature-link{display:inline-block;font-size:13px;font-weight:500;color:var(--gold);text-decoration:none;margin-top:10px;border-bottom:1px solid var(--gold-light)}
+    .feature-card.highlight .feature-link{color:var(--gold)}
+    .feature-link:hover{color:#A87B38;border-color:#A87B38}
 
     /* TEMPLATES */
     .templates-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:32px}
@@ -229,6 +232,7 @@
     .faq-icon{font-size:26px;font-weight:300;color:var(--gold);line-height:1;flex-shrink:0;width:28px;text-align:center;transition:transform .2s}
     .faq-body{margin-top:16px;padding-right:52px;display:none}
     .faq-body p{font-size:15px;font-weight:300;color:var(--brown);line-height:1.85}
+    .faq-body a{color:var(--gold);text-decoration:underline}
 
     /* CONTACT */
     .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px}
@@ -395,23 +399,25 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
     <div class="features-grid">
 
-      <div class="feature-card">
+      <div class="feature-card" id="programme">
         <div class="icon">
           <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><rect x="4" y="5" width="24" height="24" rx="2" stroke="#C4954A" stroke-width="1.5"/><path d="M4 12h24" stroke="#C4954A" stroke-width="1.5"/><path d="M10 3v4M22 3v4" stroke="#C4954A" stroke-width="1.5" stroke-linecap="round"/><rect x="8" y="17" width="4" height="4" rx=".5" fill="#C4954A"/><rect x="14" y="17" width="4" height="4" rx=".5" fill="#C4954A" opacity=".45"/><rect x="20" y="17" width="4" height="4" rx=".5" fill="#C4954A" opacity=".25"/></svg>
         </div>
         <h3>Programme de la journée</h3>
         <p>Horaires, lieux, étapes clés — vos invités savent où et quand se retrouver.</p>
+        <a href="blog-checklist-mariage.html" class="feature-link">En savoir plus →</a>
       </div>
 
-      <div class="feature-card">
+      <div class="feature-card" id="rsvp">
         <div class="icon">
           <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><rect x="2" y="8" width="22" height="16" rx="2" stroke="#C4954A" stroke-width="1.5"/><path d="M2 12l11 7 11-7" stroke="#C4954A" stroke-width="1.5" stroke-linecap="round"/><circle cx="25" cy="8" r="5" fill="#FAF8F3" stroke="#C4954A" stroke-width="1.5"/><path d="M22.5 8l2 2 3.5-3" stroke="#C4954A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </div>
         <h3>Confirmation des invités</h3>
         <p>Formulaire RSVP en ligne, suivi des présences et régimes alimentaires.</p>
+        <a href="blog-rsvp-en-ligne.html" class="feature-link">En savoir plus →</a>
       </div>
 
-      <div class="feature-card highlight">
+      <div class="feature-card highlight" id="qrcode">
         <div class="feature-card-inner">
           <div class="badge">Nouveau</div>
           <div class="icon">
@@ -419,10 +425,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           </div>
           <h3>QR Code faire-part</h3>
           <p>Un code unique à imprimer sur vos invitations pour un accès instantané au site.</p>
+          <a href="blog-qr-code-faire-part.html" class="feature-link">En savoir plus →</a>
         </div>
       </div>
 
-      <div class="feature-card">
+      <div class="feature-card" id="gallery">
         <div class="icon">
           <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><rect x="3" y="5" width="26" height="20" rx="2" stroke="#C4954A" stroke-width="1.5"/><path d="M3 20l8-7 6 5 4-3.5 7 6.5" stroke="#C4954A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="10" cy="12" r="2.5" stroke="#C4954A" stroke-width="1.5"/></svg>
         </div>
@@ -430,15 +437,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <p>Partagez vos plus belles photos en avant-première avec tous vos proches.</p>
       </div>
 
-      <div class="feature-card">
+      <div class="feature-card" id="liste-mariage">
         <div class="icon">
           <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><path d="M16 27S3 19 3 11a6 6 0 0113-1 6 6 0 0113 1c0 8-13 16-13 16z" stroke="#C4954A" stroke-width="1.5" stroke-linejoin="round"/></svg>
         </div>
         <h3>Liste de mariage</h3>
         <p>Lien vers votre liste de cadeaux ou cagnotte, intégré directement au site.</p>
+        <a href="blog-liste-mariage.html" class="feature-link">En savoir plus →</a>
       </div>
 
-      <div class="feature-card">
+      <div class="feature-card" id="mobile">
         <div class="icon">
           <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><rect x="10" y="2" width="12" height="28" rx="3" stroke="#C4954A" stroke-width="1.5"/><path d="M14 27h4" stroke="#C4954A" stroke-width="1.5" stroke-linecap="round"/><path d="M10 6h12" stroke="#C4954A" stroke-width="1.5" stroke-linecap="round"/></svg>
         </div>
@@ -446,15 +454,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <p>Design responsive pour une expérience parfaite sur tous les appareils.</p>
       </div>
 
-      <div class="feature-card">
+      <div class="feature-card" id="hebergement">
         <div class="icon">
           <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><path d="M8 23a8 8 0 1 1 14-5.5 5.5 5.5 0 1 1-2 11H8a5.5 5.5 0 0 1 0-11z" stroke="#C4954A" stroke-width="1.5" stroke-linejoin="round"/></svg>
         </div>
         <h3>Hébergement 1 an inclus</h3>
         <p>Pas de configuration technique — votre site reste en ligne sans effort.</p>
+        <a href="blog-budget-site-mariage.html" class="feature-link">En savoir plus →</a>
       </div>
 
-      <div class="feature-card">
+      <div class="feature-card" id="countdown">
         <div class="icon">
           <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><circle cx="16" cy="18" r="11" stroke="#C4954A" stroke-width="1.5"/><path d="M16 12v6l4 3" stroke="#C4954A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M13 4h6" stroke="#C4954A" stroke-width="1.5" stroke-linecap="round"/><path d="M16 4v3" stroke="#C4954A" stroke-width="1.5" stroke-linecap="round"/></svg>
         </div>
@@ -462,7 +471,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <p>Un décompte élégant jusqu'au jour J pour faire monter l'impatience.</p>
       </div>
 
-      <div class="feature-card highlight">
+      <div class="feature-card highlight" id="album-photos">
         <div class="feature-card-inner">
           <div class="badge">Après le mariage</div>
           <div class="icon">
@@ -470,6 +479,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           </div>
           <h3>Album photos post-mariage</h3>
           <p>Publiez vos photos après le mariage pour que vos invités les visualisent et les téléchargent directement depuis le site.</p>
+          <a href="blog-album-photos-mariage.html" class="feature-link">En savoir plus →</a>
         </div>
       </div>
 
@@ -483,7 +493,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="section-header">
       <div class="label"><div class="label-line" style="background:var(--gold)"></div><span class="label-text">Nos créations</span><div class="label-line" style="background:var(--gold)"></div></div>
       <h2>Templates disponibles</h2>
-      <p class="section-sub">Choisissez l'ambiance qui correspond à votre mariage.</p>
+      <p class="section-sub">Choisissez l'ambiance qui correspond à votre mariage. Besoin d'aide pour décider ? <a href="blog-choisir-template-mariage.html" style="color:var(--gold)">Notre comparatif des 4 styles →</a></p>
     </div>
 
     <div class="templates-grid">
@@ -634,7 +644,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="section-header">
       <div class="label"><div class="label-line" style="background:var(--gold)"></div><span class="label-text">Tarifs</span><div class="label-line" style="background:var(--gold)"></div></div>
       <h2>Un investissement unique</h2>
-      <p class="section-sub">Tarif unique, pas d'abonnement. Votre site est livré clé en main.</p>
+      <p class="section-sub">Tarif unique, pas d'abonnement. Votre site est livré clé en main. <a href="blog-budget-site-mariage.html" style="color:var(--gold)">Voir le détail du budget →</a></p>
     </div>
 
     <div class="pricing-grid">
@@ -824,19 +834,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   const faqs = [
     {
       q: "Combien de temps faut-il pour créer mon site ?",
-      a: "Votre site est en ligne en 48h après réception de vos informations et contenus. Pour les formules incluant une galerie photos, comptez 2 à 5 jours supplémentaires selon le nombre de photos."
+      a: "Votre site est en ligne en 48h après réception de vos informations et contenus. Pour les formules incluant une galerie photos, comptez 2 à 5 jours supplémentaires selon le nombre de photos. Voir notre <a href=\"blog-checklist-mariage.html\">check-list mariage mois par mois</a> pour bien planifier."
     },
     {
       q: "Puis-je modifier le contenu après livraison ?",
-      a: "Oui. Des ajustements de textes et de dates sont inclus selon votre forfait (2, 4 ou 10 modifications). Des changements plus importants peuvent être réalisés sur devis."
+      a: "Oui. Des ajustements de textes et de dates sont inclus selon votre forfait (4 ou 10 modifications). Des changements plus importants peuvent être réalisés sur devis. Détails dans notre <a href=\"blog-budget-site-mariage.html\">guide budget &amp; formules</a>."
     },
     {
       q: "Comment fonctionne le QR code pour les faire-part ?",
-      a: "Nous générons un QR code unique lié à votre site, optimisé pour l'impression (300 dpi). Il suffit de l'intégrer à vos faire-part — vos invités n'ont qu'à le scanner pour accéder à toutes les informations en temps réel."
+      a: "Nous générons un QR code unique lié à votre site, optimisé pour l'impression (300 dpi). Il suffit de l'intégrer à vos faire-part — vos invités n'ont qu'à le scanner pour accéder à toutes les informations en temps réel. Notre <a href=\"blog-qr-code-faire-part.html\">guide complet du QR code faire-part</a> détaille la mise en place."
     },
     {
       q: "Comment fonctionne l'album photos post-mariage ?",
-      a: "Après votre mariage, nous mettons en ligne vos photos directement sur votre site. Vos invités peuvent les visualiser et les télécharger facilement depuis n'importe quel appareil, sans créer de compte. Cette fonctionnalité est incluse dans le plan Premium et disponible en option pour les autres plans."
+      a: "Après votre mariage, nous mettons en ligne vos photos directement sur votre site. Vos invités peuvent les visualiser et les télécharger facilement depuis n'importe quel appareil, sans créer de compte. Cette fonctionnalité est incluse dans le plan Premium et disponible en option pour les autres plans. Plus de détails dans notre article <a href=\"blog-album-photos-mariage.html\">album photos post-mariage</a>."
     },
     {
       q: "Le site fonctionne-t-il bien sur smartphone ?",
@@ -844,7 +854,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     },
     {
       q: "Puis-je voir un exemple de site avant de commander ?",
-      a: "Bien sûr ! Contactez-nous et nous vous envoyons un lien vers un site de démonstration complet dans le template de votre choix, avec toutes les fonctionnalités actives."
+      a: "Bien sûr ! Chaque <a href=\"#templates\">template</a> dispose d'une démonstration complète accessible directement depuis la section ci-dessus. Pour vous aider à choisir, lisez aussi notre <a href=\"blog-choisir-template-mariage.html\">comparatif des 4 styles de templates</a>."
     }
   ];
 
